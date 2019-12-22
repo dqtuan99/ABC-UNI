@@ -99,6 +99,7 @@ class DataView {
     $html .= '
     <a href="'.$this->addPath.'">Them mon hoc</a>
     <a href="'.$this->modifyPath.'">Sua mon hoc</a>
+    <a href="'.$this->deletePath.'">Xoa mon hoc</a>
     ';
 
     if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
@@ -132,6 +133,17 @@ class DataView {
         </form>
       ';
     }
+    if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
+      $html .= '
+        <form method="post" action="">
+        <input type="hidden" name="course_deleted" value="1"/>
+        Course id:<br>
+        <input type="text" name="course_id" placeholder="Course id" required>
+        <br>
+        <input type="submit" value="Submit">
+        </form>
+      ';
+    }
 
     if (count($this->data) == 0) {
       $html .= "Khong ton tai mon hoc nao.";
@@ -156,6 +168,7 @@ class DataView {
     $html .= '
     <a href="'.$this->addPath.'">Them ky thi</a>
     <a href="'.$this->modifyPath.'">Sua ky thi</a>
+    <a href="'.$this->deletePath.'">Xoa ky thi</a>
     ';
 
     if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
@@ -183,6 +196,17 @@ class DataView {
         </form>
       ';
     }
+    if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
+      $html .= '
+        <form method="post" action="">
+        <input type="hidden" name="semester_deleted" value="1"/>
+        Semester id:<br>
+        <input type="text" name="semester_id" placeholder="Semester id" required>
+        <br>
+        <input type="submit" value="Submit">
+        </form>
+      ';
+    }
 
     if (count($this->data) == 0) {
       $html .= "Khong ton tai ky thi nao.";
@@ -202,11 +226,14 @@ class DataView {
   }
 
   public function examListView() {
+    $getAllPath = $this->current_path . '&&getAll=1';
     $html = "";
 
     $html .= '
     <a href="'.$this->addPath.'">Them ca thi</a>
     <a href="'.$this->modifyPath.'">Sua ca thi</a>
+    <a href="'.$this->deletePath.'">Xoa ca thi</a>
+    <a href="'.$getAllPath.'">Get all</a>
     ';
 
     if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
@@ -222,11 +249,8 @@ class DataView {
         Ngay thi:<br>
         <input type="text" name="ngaythi" placeholder="yyyy/mm/dd" required>
         <br>
-        Thoi gian bat dau:<br>
-        <input type="text" name="start_time" placeholder="hh:mm:ss" required>
-        <br>
-        Thoi gian ket thuc:<br>
-        <input type="text" name="end_time" placeholder="hh:mm:ss" required>
+        Ca thi:<br>
+        <input type="text" name="cathi" placeholder="Ca thi" required>
         <br>
         <input type="submit" value="Submit">
         </form>
@@ -248,11 +272,19 @@ class DataView {
         Ngay thi:<br>
         <input type="text" name="ngaythi" placeholder="yyyy/mm/dd" required>
         <br>
-        Thoi gian bat dau:<br>
-        <input type="text" name="start_time" placeholder="hh:mm:ss" required>
+        Ca thi:<br>
+        <input type="text" name="cathi" placeholder="Ca thi" required>
         <br>
-        Thoi gian ket thuc:<br>
-        <input type="text" name="end_time" placeholder="hh:mm:ss" required>
+        <input type="submit" value="Submit">
+        </form>
+      ';
+    }
+    if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
+      $html .= '
+        <form method="post" action="">
+        <input type="hidden" name="exam_deleted" value="1"/>
+        Exam id:<br>
+        <input type="text" name="exam_id" placeholder="Exam id" required>
         <br>
         <input type="submit" value="Submit">
         </form>
@@ -265,18 +297,41 @@ class DataView {
     else {
       foreach ($this->data as $row){
         $html .= '
+        <p>'.$row["cathi_id"].'</p>
         <p>'.$row["hocphan_id"].'</p>
         <p>'.$row["ten_mon_hoc"].'</p>
         <p>'.$row["room_name"].'</p>
         <p>'.$row["ngaythi"].'</p>
-        <p>'.$row["start"].'</p>
-        <p>'.$row["end"].'</p>
+        <p>'.$row["cathi"].'</p>
         <br />
         ';
       }
     }
 
     return $html;
+  }
+
+  public function studentByExamView() {
+    $html = "";
+
+    $html .= '<h3>Ca thi: '.$this->data[0]["cathi"].'</h3>';
+    $html .= '<h3>Ngay thi: '.$this->data[0]["ngaythi"].'</h3>';
+    $html .= '<h3>Phong thi: '.$this->data[0]["room_name"].'</h3>';
+    $html .= '<h3>Ma mon hoc: '.$this->data[0]["hocphan_id"].'</h3>';
+    $html .= '<h3>Mon thi: '.$this->data[0]["ten_mon_hoc"].'</h3>';
+
+    $html .= 'Masv | ';
+    $html .= 'Username | ';
+    $html .= 'Fullname<br />';
+
+    foreach($this->data as $std){
+      $html .= $std["sv_id"] . ' | ';
+      $html .= $std["username"] . ' | ';
+      $html .= $std["fullname"] . '<br />';
+    }
+
+    return $html;
+
   }
 
 }

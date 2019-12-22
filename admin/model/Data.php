@@ -58,6 +58,32 @@ class Data {
     return $count;
   }
 
+  public function getStudentByExam($cathi, $ngaythi, $room_id) {
+    $db = new PDOData();
+    $data = $db->doPreparedQuery("
+    select  sc.sv_id, u.username, u.fullname,
+            k.kythi_id, k.ten_ky_thi,
+            sc.cathi_id, c.cathi, c.ngaythi,
+            r.room_id, r.room_name,
+            h.hocphan_id, h.ten_mon_hoc
+    from sv_cathi sc
+    inner join cathi c
+    on sc.cathi_id = c.cathi_id
+    inner join user u
+    on sc.sv_id = u.user_id
+    inner join room r
+    on c.room_id = r.room_id
+    inner join hocphan h
+    on c.hocphan_id = h.hocphan_id
+    inner join kythi k
+    on c.kythi_id = k.kythi_id
+    where c.cathi = ? and c.ngaythi = ? and r.room_id = ?
+    order by c.cathi, c.ngaythi, r.room_id;
+    ", array($cathi, $ngaythi, $room_id));
+
+    return $data;
+  }
+
   // ================================================================================================================
 
 
@@ -93,6 +119,16 @@ class Data {
       set ten_mon_hoc = ?, teacher_id = ?
       where hocphan_id = ?;
     ", array($ten_mon_hoc, $teacher_id, $hocphan_id));
+
+    return $count;
+  }
+
+  public function deleteCourse($course_id) {
+    $db = new PDOData();
+    $count = $db->doPrepareSql("
+      delete from hocphan
+      where hocphan_id = ?;
+    ", array($course_id));
 
     return $count;
   }
@@ -134,6 +170,16 @@ class Data {
     return $count;
   }
 
+  public function deleteSemester($semester_id) {
+    $db = new PDOData();
+    $count = $db->doPrepareSql("
+      delete from kythi
+      where kythi_id = ?;
+    ", array($semester_id));
+
+    return $count;
+  }
+
   // ================================================================================================================
 
 
@@ -157,25 +203,67 @@ class Data {
     return $data;
   }
 
-  public function addExam($room_id, $hocphan_id, $kythi_id, $ngaythi, $start, $end) {
+  public function getSemesterName($kythi_id) {
+    $db = new PDOData();
+    $data = $db->doPreparedQuery("
+      select *
+      from kythi
+      where kythi_id = ?
+    ", array($kythi_id));
+
+    return $data;
+  }
+
+  public function addExam($room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
       insert into cathi (room_id, hocphan_id, kythi_id, ngaythi, start, end)
       values (?, ?, ?, ?, ?, ?);
-    ", array($room_id, $hocphan_id, $kythi_id, $ngaythi, $start, $end));
+    ", array($room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi));
 
     return $count;
   }
 
-  public function modifyExam($exam_id, $room_id, $hocphan_id, $kythi_id, $ngaythi, $start, $end) {
+  public function modifyExam($exam_id, $room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
       update cathi
-      set room_id = ?, hocphan_id = ?, kythi_id = ?, ngaythi = ?, start = ?, end = ?
+      set room_id = ?, hocphan_id = ?, kythi_id = ?, ngaythi = ?, cathi = ?
       where cathi_id = ?;
-    ", array($room_id, $hocphan_id, $kythi_id, $ngaythi, $start, $end, $exam_id));
+    ", array($room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi, $exam_id));
 
     return $count;
+  }
+
+  public function deleteExam($exam_id) {
+    $db = new PDOData();
+    $count = $db->doPrepareSql("
+      delete from cathi
+      where cathi_id = ?;
+    ", array($exam_id));
+
+    return $count;
+  }
+
+  public function groupBy_CaThi_NgayThi_PhongThi($kythi_id) {
+    $db = new PDOData();
+    $data = $db->doPreparedQuery("
+      select  k.kythi_id, k.ten_ky_thi,
+              sc.cathi_id, c.cathi, c.ngaythi,
+              r.room_id, r.room_name
+      from sv_cathi sc
+      inner join cathi c
+      on sc.cathi_id = c.cathi_id
+      inner join room r
+      on c.room_id = r.room_id
+      inner join kythi k
+      on c.kythi_id = k.kythi_id
+      where k.kythi_id = ?
+      group by c.cathi, c.ngaythi, r.room_id
+      order by c.cathi, c.ngaythi, r.room_id;
+    ", array($kythi_id));
+
+    return $data;
   }
 
   // ================================================================================================================
