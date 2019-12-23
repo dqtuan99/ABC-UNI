@@ -163,6 +163,53 @@ class Data {
   }
   // ================================================================================================================
 
+  // Room section
+  // ================================================================================================================
+
+  public function getRoomList() {
+    $db = new PDOData();
+    $data = $db->doQuery("
+    select *
+    from room
+    order by room_id asc;
+    ");
+
+    return $data;
+  }
+
+  public function addRoom($room_id, $room_name, $max_slot) {
+    $db = new PDOData();
+    $count = $db->doPrepareSql("
+    insert into room (room_id, room_name, max_slot)
+    values (?, ?, ?);
+    ", array($room_id, $room_name, $max_slot));
+
+    return $count;
+  }
+
+  public function modifyRoom($room_id, $room_name, $max_slot) {
+    $db = new PDOData();
+    $count = $db->doPrepareSql("
+    update room
+    set room_name = ?, max_slot = ?
+    where room_id = ?;
+    ", array($room_name, $max_slot, $room_id));
+
+    return $count;
+  }
+
+  public function deleteRoom($room_id) {
+    $db = new PDOData();
+    $count = $db->doPrepareSql("
+    delete from room
+    where room_id = ?;
+    ", array($room_id));
+
+    return $count;
+  }
+
+  // ================================================================================================================
+
 
   // Semester section
   // ================================================================================================================

@@ -24,6 +24,8 @@ class ExcelControl {
     foreach($sv_hocphan as $row){
       $count = $model->addSv_HocPhan($row[0], $row[1], $row[2]);
     }
+
+    echo "Import thành công dữ liệu từ excel.";
   }
   // ================================================================================================================
 }

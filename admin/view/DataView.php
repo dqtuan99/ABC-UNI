@@ -233,6 +233,97 @@ class DataView {
     return $html;
   }
 
+  public function roomListView() {
+    $html = "";
+
+    $html .= '
+    <a href="'.$this->addPath.'">Them phong may</a>
+    <a href="'.$this->modifyPath.'">Sua phong may</a>
+    <a href="'.$this->deletePath.'">Xoa phong may</a>
+    ';
+
+    if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
+      $html .= '
+        <form method="post" action="">
+        <input type="hidden" name="room_added" value="1"/>
+        Room id:<br>
+        <input type="text" name="room_id" placeholder="Room id" required>
+        <br>
+        Room name:<br>
+        <input type="text" name="room_name" placeholder="Room name" required>
+        <br>
+        Max slot:<br>
+        <input type="text" name="max_slot" placeholder="Max slot" required>
+        <br>
+        <input type="submit" value="Submit">
+        </form>
+      ';
+    }
+    if (isset($_GET["modify"]) && $_GET["modify"] == "modify"){
+      $html .= '
+        <form method="post" action="">
+        <input type="hidden" name="room_modified" value="1"/>
+        Room id:<br>
+        <input type="text" name="room_id" placeholder="Room id" required>
+        <br>
+        Room name:<br>
+        <input type="text" name="room_name" placeholder="Room name" required>
+        <br>
+        Max slot:<br>
+        <input type="text" name="max_slot" placeholder="Max slot" required>
+        <br>
+        <input type="submit" value="Submit">
+        </form>
+      ';
+    }
+    if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
+      $html .= '
+        <form method="post" action="">
+        <input type="hidden" name="room_deleted" value="1"/>
+        Room id:<br>
+        <input type="text" name="room_id" placeholder="Room id" required>
+        <br>
+        <input type="submit" value="Submit">
+        </form>
+      ';
+    }
+
+    if (count($this->data) == 0) {
+      $html .= "Khong ton tai phong may nao.";
+    }
+    else {
+      $html .= '
+      <div>
+      <div id="table-wrapper">
+      <div id="table-scroll">
+      <table>
+      <tr>
+      <th>Mã Phòng Máy</th>
+      <th>Tên Phòng Máy</th>
+      <th>Maximum Slot</th>
+      <th></th>
+      </tr>';
+      foreach ($this->data as $row){
+        $html .= '
+        <tr>
+        <td>'.$row["room_id"].'</td>
+        <td>'.$row["room_name"].'</td>
+        <td>'.$row["max_slot"].'</td>
+        <td id="btnevd"><button id="button-edit"><i class="fas fa-edit"></i></button><button id="button-delete"><i class="fas fa-trash"></i></button></td>
+        </tr>
+        ';
+      }
+      $html.='
+      </table>
+      </div>
+      </div>
+      </div>';
+
+    }
+
+    return $html;
+  }
+
   public function semesterListView() {
     $html = "";
 
@@ -431,21 +522,36 @@ class DataView {
   public function studentByExamView() {
     $html = "";
 
-    $html .= '<h3>Ca thi: '.$this->data[0]["cathi"].'</h3>';
-    $html .= '<h3>Ngay thi: '.$this->data[0]["ngaythi"].'</h3>';
-    $html .= '<h3>Phong thi: '.$this->data[0]["room_name"].'</h3>';
-    $html .= '<h3>Ma mon hoc: '.$this->data[0]["hocphan_id"].'</h3>';
-    $html .= '<h3>Mon thi: '.$this->data[0]["ten_mon_hoc"].'</h3>';
+    $html .= '<h5>Ca thi: '.$this->data[0]["cathi"].'</h5>';
+    $html .= '<h5>Ngay thi: '.$this->data[0]["ngaythi"].'</h5>';
+    $html .= '<h5>Phong thi: '.$this->data[0]["room_name"].'</h5>';
+    $html .= '<h5>Ma mon hoc: '.$this->data[0]["hocphan_id"].'</h5>';
+    $html .= '<h5>Mon thi: '.$this->data[0]["ten_mon_hoc"].'</h5>';
 
-    $html .= 'Masv | ';
-    $html .= 'Username | ';
-    $html .= 'Fullname<br />';
-
-    foreach($this->data as $std){
-      $html .= $std["sv_id"] . ' | ';
-      $html .= $std["username"] . ' | ';
-      $html .= $std["fullname"] . '<br />';
+    $html .= '
+    <div>
+    <div id="table-wrapper">
+    <div id="table-scroll">
+    <table>
+    <tr>
+    <th style="width: 150px;">Mã sinh viên</th>
+    <th style="width: 250px;">Username</th>
+    <th>Họ và tên</th>
+    </tr>';
+    foreach ($this->data as $row){
+      $html .= '
+      <tr>
+      <td>'.$row["sv_id"].'</td>
+      <td>'.$row["username"].'</td>
+      <td>'.$row["fullname"].'</td>
+      </tr>
+      ';
     }
+    $html.='
+    </table>
+    </div>
+    </div>
+    </div>';
 
     return $html;
 

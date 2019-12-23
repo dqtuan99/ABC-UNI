@@ -61,6 +61,11 @@
           </div> Môn học</a>
         </li>
         <li>
+          <a href="./admin.php?location=phongmay"><div style="display:inline-block; width: 30px;">
+            <i class="fas fa-laptop" style="margin-right:4px;"></i>
+          </div> Phòng máy</a>
+        </li>
+        <li>
           <a href="admin/kythi"><div style="display:inline-block; width: 30px;">
             <i class="fas fa-eye-dropper" style="margin-right:4px;"></i>
           </div> Kỳ thi</a>
@@ -108,6 +113,7 @@
         <div class="line"></div>
       <?php elseif ($_GET["location"] == "student"): echo $dataMgr->showStudentList(); ?>
       <?php elseif ($_GET["location"] == "monhoc"): echo $dataMgr->showCourseList(); ?>
+        <?php elseif ($_GET["location"] == "phongmay"): echo $dataMgr->showRoomList(); ?>
       <?php elseif ($_GET["location"] == "kythi"): echo $dataMgr->showSemesterList(); ?>
       <?php elseif ($_GET["location"] == "excel"): echo $excelCtrl->importExcel(); ?>
       <?php endif; ?>

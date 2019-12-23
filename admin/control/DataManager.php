@@ -78,6 +78,32 @@ class DataManager {
   }
   // ================================================================================================================
 
+  // Room section
+  // ================================================================================================================
+  public function showRoomList() {
+    $model = new \admin\model\Data();
+
+    if (isset($_POST["room_added"])){
+      $count = $model->addRoom($_POST["room_id"], $_POST["room_name"], $_POST["max_slot"]);
+      header("Location: admin.php?location=phongmay");
+    }
+    if (isset($_POST["room_modified"])){
+      $count = $model->modifyRoom($_POST["room_id"], $_POST["room_name"], $_POST["max_slot"]);
+      header("Location: admin.php?location=phongmay");
+    }
+    if (isset($_POST["room_deleted"])){
+      $count = $model->deleteRoom($_POST["room_id"]);
+      header("Location: admin.php?location=phongmay");
+    }
+
+    $data = $model->getRoomList();
+    $view = new \admin\view\DataView($data);
+
+    echo $view->roomListView();
+  }
+
+  // ================================================================================================================
+
 
   // Semester section
   // ================================================================================================================
