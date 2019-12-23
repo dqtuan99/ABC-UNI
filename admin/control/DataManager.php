@@ -1,7 +1,7 @@
 <?php
 
 namespace admin\control;
-use core\util\Util;
+use core\util\Util; // Hợp thức hóa dữ liệu nhập vào form
 
 require_once("admin/model/Data.php");
 require_once("admin/view/DataView.php");
@@ -14,7 +14,7 @@ class DataManager {
 
   // Student section
   // ================================================================================================================
-
+  // Controller cho phần xem danh sách sinh viên
   public function showStudentList() {
     $model = new \admin\model\Data();
 
@@ -80,6 +80,7 @@ class DataManager {
 
   // Course section
   // ================================================================================================================
+  // Controller của phần danh sách môn học
   public function showCourseList() {
     $model = new \admin\model\Data();
 
@@ -146,6 +147,7 @@ class DataManager {
 
   // Room section
   // ================================================================================================================
+  // Controller của phần danh sách phòng máy
   public function showRoomList() {
     $model = new \admin\model\Data();
 
@@ -199,9 +201,11 @@ class DataManager {
 
   // Semester section
   // ================================================================================================================
+  // Controller của phần danh sách kỳ thi
   public function showSemesterList() {
     $model = new \admin\model\Data();
 
+    // Nếu ta chọn một kỳ thi trong danh sách, thì chuyển qua hiện danh sách ca thi của kỳ thi đó
     if (isset($_GET["kythi_id"]) && $_GET["kythi_id"] != ""){
       $this->showExamListBySemester();
     }
@@ -254,6 +258,7 @@ class DataManager {
 
   // Exam section
   // ================================================================================================================
+  // Controller của danh sách ca thi thuộc một kỳ thi
   public function showExamListBySemester() {
     $model = new \admin\model\Data();
     $data = $model->getExamListBySemester($_GET["kythi_id"]);
@@ -267,6 +272,7 @@ class DataManager {
       $ngaythi = Util::clean($_POST["ngaythi"], 20);
       $cathi = Util::clean($_POST["cathi"], 20);
 
+      // Kiểm tra hợp thức của mục điền ngày tháng
       $isDate = TRUE;
       $dateArr = explode("-", $ngaythi);
       if (count($dateArr) != 3){
@@ -279,6 +285,7 @@ class DataManager {
         $isDate = checkdate($month, $day, $year);
       }
 
+      // Nếu không phải ngày tháng, báo lỗi và tải lại trang
       if (!$isDate) {
         $message = "Ngay thi khong dung format xin hay nhap lai.";
         echo "<script type='text/javascript'>alert('$message');</script>";
@@ -298,7 +305,7 @@ class DataManager {
 
         header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
         // header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
-      }      
+      }
     }
     if (isset($_POST["exam_modified"])){
       $exam_id = Util::clean($_POST["exam_id"], 20);
@@ -306,25 +313,48 @@ class DataManager {
       $course_id = Util::clean($_POST["course_id"], 20);
       $ngaythi = Util::clean($_POST["ngaythi"], 20);
       $cathi = Util::clean($_POST["cathi"], 20);
-      $count = $model->modifyExam($exam_id, $room_id, $course_id, $_GET["kythi_id"], $ngaythi, $cathi);
 
-      if ($count == 0){
-        $message = "Sua ca thi khong thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+      // Kiểm tra hợp thức của mục điền ngày tháng
+      $isDate = TRUE;
+      $dateArr = explode("-", $ngaythi);
+      if (count($dateArr) != 3){
+        $isDate = FALSE;
       }
       else {
-        $message = "Sua ca thi thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        $day = $dateArr[2];
+        $month = $dateArr[1];
+        $year = $dateArr[0];
+        $isDate = checkdate($month, $day, $year);
       }
 
-      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+      // Nếu không phải ngày tháng, báo lỗi và tải lại trang
+      if (!$isDate) {
+        $message = "Ngay thi khong dung format xin hay nhap lai.";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+      }
+      else {
+        $count = $model->modifyExam($exam_id, $room_id, $course_id, $_GET["kythi_id"], $ngaythi, $cathi);
+
+        if ($count == 0){
+          $message = "Sua ca thi khong thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+        else {
+          $message = "Sua ca thi thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+
+        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+      }
     }
     if (isset($_GET["exam_deleted"])){
       $count = $model->deleteExam($_GET["exam_id"]);
       header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
     }
 
-
+    // Nếu ấn nút get all, chuyển qua giao diện in danh sách thí sinh dự thi
+    // theo từng phòng thi của các ca thi
     if (isset($_GET["getAll"])){
       $examGroup = $model->groupBy_CaThi_NgayThi_PhongThi($_GET["kythi_id"]);
       foreach ($examGroup as $group){

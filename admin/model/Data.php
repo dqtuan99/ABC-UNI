@@ -12,7 +12,7 @@ class Data {
 
   // Student section
   // ================================================================================================================
-
+  // Lấy danh sách tất cả sinh viên
   public function getStudentList() {
     $db = new PDOData();
     $data = $db->doQuery("
@@ -24,7 +24,7 @@ class Data {
 
     return $data;
   }
-
+  // Thêm sinh viên vào bảng user
   public function addStudent($user_id, $username, $password, $fullname) {
     $db = new PDOData();
     $hashed = hash("sha256", $password);
@@ -37,7 +37,7 @@ class Data {
 
     return $count;
   }
-
+  // Sửa thông tin sinh viên
   public function modifyStudent($user_id, $username, $password, $fullname) {
     $db = new PDOData();
     $hashed = hash("sha256", $password);
@@ -49,7 +49,7 @@ class Data {
 
     return $count;
   }
-
+  // Xóa sinh viên
   public function deleteStudent($user_id) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
@@ -59,7 +59,7 @@ class Data {
 
     return $count;
   }
-
+  // Lấy ra danh sách sinh viên thuộc môn học có id=$hocphan_id
   public function getStudentByCourse($hocphan_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
@@ -74,7 +74,7 @@ class Data {
 
     return $data;
   }
-
+  // Lấy ra danh sách sinh viên thuộc ca thi
   public function getStudentByExam($cathi, $ngaythi, $room_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
@@ -106,7 +106,7 @@ class Data {
 
   // Course section
   // ================================================================================================================
-
+  // Lấy danh sách tất cả môn học
   public function getCourseList() {
     $db = new PDOData();
     $data = $db->doQuery("
@@ -119,7 +119,7 @@ class Data {
 
     return $data;
   }
-
+  // Thêm môn học
   public function addCourse($hocphan_id, $ten_mon_hoc, $teacher_id) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
@@ -129,7 +129,7 @@ class Data {
 
     return $count;
   }
-
+  // Sửa thông tin môn học
   public function modifyCourse($hocphan_id, $ten_mon_hoc, $teacher_id) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
@@ -140,7 +140,7 @@ class Data {
 
     return $count;
   }
-
+  // Xóa môn học
   public function deleteCourse($course_id) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
@@ -261,7 +261,7 @@ class Data {
 
   // Exam section
   // ================================================================================================================
-
+  // Lấy danh sách ca thi trong một kì thi
   public function getExamListBySemester($kythi_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
@@ -321,7 +321,7 @@ class Data {
 
     return $count;
   }
-
+  // Tìm ra các bộ (ngày thi, ca thi, phòng thi) unique
   public function groupBy_CaThi_NgayThi_PhongThi($kythi_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
@@ -336,8 +336,8 @@ class Data {
       inner join kythi k
       on c.kythi_id = k.kythi_id
       where k.kythi_id = ?
-      group by c.cathi, c.ngaythi, r.room_id
-      order by c.cathi, c.ngaythi, r.room_id;
+      group by c.ngaythi, c.cathi, r.room_id
+      order by c.ngaythi, c.cathi, r.room_id;
     ", array($kythi_id));
 
     return $data;
@@ -348,6 +348,7 @@ class Data {
 
   // Excel import section
   // ================================================================================================================
+  // Thêm sinh viên bị cấm thi vào db
   public function addSv_CamThi($sv_id, $kythi_id, $hocphan_id) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
@@ -359,6 +360,7 @@ class Data {
     return $count;
   }
 
+  // Thêm học phần một sinh viên học trong kỳ
   public function addSv_HocPhan($sv_id, $kythi_id, $hocphan_id) {
     $db = new PDOData();
     $count = $db->doPrepareSql("

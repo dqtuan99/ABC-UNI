@@ -8,6 +8,7 @@ class Account {
   public function __contruct() {
   }
 
+  // Kiểm tra đăng nhập
   public function checkAccount($username, $password) {
     $db = new PDOData();
     $hashed = hash("sha256", $password);
@@ -22,6 +23,7 @@ class Account {
     return false;
   }
 
+  // Truy vấn thông tin người dùng
   public function getAccountInformation($username) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("

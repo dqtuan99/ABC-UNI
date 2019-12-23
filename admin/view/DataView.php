@@ -5,14 +5,15 @@ namespace admin\view;
 class DataView {
   private $data;
   private $current_path;
-  private $addPath;
-  private $modifyPath;
+  private $addPath; //path add dữ liệu
+  private $modifyPath; //path sửa dữ liệu
   private $deletePath;
 
   public function __construct($data) {
     $this->data = $data;
     $this->current_path = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
+    // Hợp thức hóa url để không bị ghép trùng với nhau thành /add/add/add...
     $arr = explode('/', $this->current_path);
     $path = "";
     $modifyArr = array("add", "modify", "delete","getall");

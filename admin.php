@@ -1,6 +1,7 @@
 <?php
   include("header.php");
 
+  // Xác thực phiên để điều hướng về đúng template
   if (isset($_SESSION["username"])) {
     if ($_SESSION["isAdmin"] != 1) {
   		header("Location: student.php?location=home");
@@ -123,7 +124,7 @@ $dataMgr = new \admin\control\DataManager();
         <div class="line"></div>
       <?php elseif ($_GET["location"] == "student"): echo $dataMgr->showStudentList(); ?>
       <?php elseif ($_GET["location"] == "monhoc"): echo $dataMgr->showCourseList(); ?>
-        <?php elseif ($_GET["location"] == "phongmay"): echo $dataMgr->showRoomList(); ?>
+      <?php elseif ($_GET["location"] == "phongmay"): echo $dataMgr->showRoomList(); ?>
       <?php elseif ($_GET["location"] == "kythi"): echo $dataMgr->showSemesterList(); ?>
       <?php elseif ($_GET["location"] == "excel"): echo $excelCtrl->importExcel(); ?>
       <?php endif; ?>

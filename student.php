@@ -1,6 +1,7 @@
 <?php
   include("header.php");
 
+  // Xác thực phiên để điều hướng về đúng template
   if (isset($_SESSION["username"])) {
     if ($_SESSION["isAdmin"] == 1) {
   		header("Location: admin-home");

@@ -5,8 +5,10 @@ include("Connect/excel/excel.php");
 
 class ExcelControl {
 
-  // Exam section
+  // Excel section
   // ================================================================================================================
+  // Nhập dữ liệu từ excel vào database
+  // Luôn lấy dữ liều từ file "data.xlsx" nằm ở thư mục ngoài cùng
   public function importExcel() {
     $model = new \admin\model\Data();
     $excel = new excel();
