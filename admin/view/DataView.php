@@ -90,9 +90,9 @@ class DataView {
       <th><h5>Mã Sinh viên</h5></th>
       <th><h5>Tên tài khoản</h5></th>
       <th><h5>Tên học sinh</h5></th>
-      <th>
-      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
-      <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
+      <th  id="button-column">
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
+      <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
       </th>
       </tr>';
       foreach ($this->data as $row){
@@ -189,9 +189,9 @@ class DataView {
       <th><h5>Mã môn học</h5></th>
       <th><h5>Tên môn học</h5></th>
       <th><h5>Tên giảng viên</h5></th>
-      <th>
-      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
-      <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
+      <th id="button-column">
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
+      <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
       </th>
       </tr>';
       foreach ($this->data as $row){
@@ -286,7 +286,7 @@ class DataView {
       <th><h5>Mã phòng máy</h5></th>
       <th><h5>Tên phòng máy</h5></th>
       <th><h5>Số máy tối đa</h5></th>
-      <th>
+      <th id="button-column">
       <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
       <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
       </th>
@@ -375,7 +375,7 @@ class DataView {
       <tr>
       <th><h5>Mã kỳ thi</h5></th>
       <th><h5>Tên tài khoản</h5></th>
-      <th>
+      <th id="button-column">
       <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
       <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
       </th>
@@ -386,7 +386,7 @@ class DataView {
         <tr>
         <td ><a href="'.$new_path.'">'.$row["kythi_id"].'</a></td>
         <td>'.$row["ten_ky_thi"].'</td>
-        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" style="margin-left:40px;" onclick="remove(this)"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" style="margin-left:40px;" onclick="remove('.$row["kythi_id"].')"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }
@@ -398,9 +398,8 @@ class DataView {
 
       $html .= '
       <script>
-      function remove(obj){
-        var id = obj.parentElement.parentElement.children[0].innerHTML;
-        var url = "./admin.php?location=kythi&&semester_deleted=1&&semester_id=" + id;
+      function remove(kythi_id){
+        var url = "./admin.php?location=kythi&&semester_deleted=1&&semester_id=" + kythi_id;
         location.replace(url);
       }
       </script>
@@ -415,7 +414,7 @@ class DataView {
     $html = "";
 
     $html .= '
-    <a href="'.$getAllPath.'">Get all</a>
+    <div class="text-center"><button class="btn btn-info" id="get-all"><a href="'.$getAllPath.'" class="getall-content">GET ALL</a></button></div>
     ';
 
     if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
@@ -492,7 +491,7 @@ class DataView {
       <th><h5>Phòng</h5></th>
       <th><h5>Ngày thi</h5></th>
       <th><h5>Ca thi</h5></th>
-      <th>
+      <th id="button-column">
       <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
       <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
       </th>
@@ -534,11 +533,11 @@ class DataView {
   public function studentByExamView() {
     $html = "";
 
-    $html .= '<h5>Ca thi: '.$this->data[0]["cathi"].'</h5>';
-    $html .= '<h5>Ngay thi: '.$this->data[0]["ngaythi"].'</h5>';
-    $html .= '<h5>Phong thi: '.$this->data[0]["room_name"].'</h5>';
-    $html .= '<h5>Ma mon hoc: '.$this->data[0]["hocphan_id"].'</h5>';
-    $html .= '<h5>Mon thi: '.$this->data[0]["ten_mon_hoc"].'</h5>';
+    $html .= '<div class="text-center"><h5>Ca thi: '.$this->data[0]["cathi"].'</h5></div>';
+    $html .= '<div class="text-center"><h5>Ngay thi: '.$this->data[0]["ngaythi"].'</h5></div>';
+    $html .= '<div class="text-center"><h5>Phong thi: '.$this->data[0]["room_name"].'</h5></div>';
+    $html .= '<div class="text-center"><h5>Ma mon hoc: '.$this->data[0]["hocphan_id"].'</h5></div>';
+    $html .= '<div class="text-center"><h5>Mon thi: '.$this->data[0]["ten_mon_hoc"].'</h5></div>';
 
     $html .= '
     <div>
@@ -546,9 +545,9 @@ class DataView {
     <div id="table-scroll">
     <table>
     <tr>
-    <th style="width: 150px;">Mã sinh viên</th>
-    <th style="width: 250px;">Username</th>
-    <th>Họ và tên</th>
+    <th style="width: 150px;"><h5>Mã sinh viên</h5></th>
+    <th style="width: 250px;"><h5>Username</h5></th>
+    <th><h5>Họ và tên</h5></th>
     </tr>';
     foreach ($this->data as $row){
       $html .= '

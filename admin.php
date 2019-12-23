@@ -10,8 +10,7 @@
     header("Location: index.php");
   }
 
-  require_once("admin/control/DataManager.php");
-  $dataMgr = new \admin\control\DataManager();
+
 
   require_once("admin/control/ExcelControl.php");
   $excelCtrl = new ExcelControl();
@@ -39,6 +38,11 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
 </head>
+
+<?php
+require_once("admin/control/DataManager.php");
+$dataMgr = new \admin\control\DataManager();
+?>
 
 <body>
 
@@ -95,9 +99,15 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="./index.php?logout">Chào mừng: <?php echo $_SESSION["fullname"]; ?></a>
-              </li>
+              <div class="dropdown ">
+                <li class="nav-item">
+                  <a class="nav-link" href=""><span class="span-btn">Chào mừng: <?php echo $_SESSION["fullname"]; ?></span></a>
+                </li>
+                <div class="dropdown-content" aria-labelledby="dropdownMenuButton">
+                  <a class="nav-link" href="./index.php?logout">Log out</a>
+                </div>
+              </div>
+
             </ul>
           </div>
         </div>

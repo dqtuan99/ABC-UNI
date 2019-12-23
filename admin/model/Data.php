@@ -294,8 +294,8 @@ class Data {
   public function addExam($exam_id, $room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
-      insert into cathi (cathi_id, room_id, hocphan_id, kythi_id, ngaythi, start, end)
-      values (?, ?, ?, ?, ?, ?, ?);
+      insert into cathi (cathi_id, room_id, hocphan_id, kythi_id, ngaythi, cathi)
+      values (?, ?, ?, ?, ?, ?);
     ", array($exam_id, $room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi));
 
     return $count;
