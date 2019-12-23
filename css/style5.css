@@ -331,25 +331,26 @@ th, td { */
   width:100%;
 
 }
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 30px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-.dropdown-content :hover{
-
-}
-.dropdown:hover .dropdown-content {
+.dropdown:hover>.dropdown-menu {
   display: block;
+  background-color:#fff;
+  font-family:'Lora';
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+.dropdown-item:hover{
+  background-color:#cfcfcf;
+  color: #fff;
+}
+.dropdown-content{
+  max-width: 20px;
+}
+
+.dropdown-menu {
+  overflow: hidden;
 }
 #get-all{
   margin-top:-20px;
