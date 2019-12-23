@@ -17,7 +17,7 @@ class DataManager {
     $model = new \admin\model\Data();
 
     if (isset($_POST["std_added"])){
-      $count = $model->addStudent($_POST["username"], $_POST["password"], $_POST["fullname"]);
+      $count = $model->addStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
       header("Location: admin.php?location=student");
     }
     if (isset($_POST["std_modified"])){
@@ -42,23 +42,34 @@ class DataManager {
   public function showCourseList() {
     $model = new \admin\model\Data();
 
-    if (isset($_POST["course_added"])){
-      $count = $model->addCourse($_POST["course_name"], $_POST["teacher_id"]);
-      header("Location: admin.php?location=monhoc");
+    if (isset($_GET["hocphan_id"])){
+      $this->showStudentByCourse();
     }
-    if (isset($_POST["course_modified"])){
-      $count = $model->modifyCourse($_POST["course_id"], $_POST["course_name"], $_POST["teacher_id"]);
-      header("Location: admin.php?location=monhoc");
-    }
-    if (isset($_POST["course_deleted"])){
-      $count = $model->deleteCourse($_POST["course_id"]);
-      header("Location: admin.php?location=monhoc");
-    }
+    else {
+      if (isset($_POST["course_added"])){
+        $count = $model->addCourse($_POST["course_id"], $_POST["course_name"], $_POST["teacher_id"]);
+        header("Location: admin.php?location=monhoc");
+      }
+      if (isset($_POST["course_modified"])){
+        $count = $model->modifyCourse($_POST["course_id"], $_POST["course_name"], $_POST["teacher_id"]);
+        header("Location: admin.php?location=monhoc");
+      }
+      if (isset($_POST["course_deleted"])){
+        $count = $model->deleteCourse($_POST["course_id"]);
+        header("Location: admin.php?location=monhoc");
+      }
 
-    $data = $model->getCourseList();
-    $view = new \admin\view\DataView($data);
+      $data = $model->getCourseList();
+      $view = new \admin\view\DataView($data);
 
-    echo $view->courseListView();
+      echo $view->courseListView();
+    }
+  }
+
+  public function showStudentByCourse() {
+    $model = new \admin\model\Data();
+    $data = $model->getStudentByCourse($_GET["hocphan_id"]);
+    $semester_name = $model->getCourseName($_GET["hocphan_id"])[0]["ten_mon_hoc"];
   }
   // ================================================================================================================
 
@@ -73,7 +84,7 @@ class DataManager {
     }
     else {
       if (isset($_POST["semester_added"])){
-        $count = $model->addSemester($_POST["semester_name"]);
+        $count = $model->addSemester($_POST["semester_id"], $_POST["semester_name"]);
         header("Location: admin.php?location=kythi");
       }
       if (isset($_POST["semester_modified"])){
@@ -104,7 +115,7 @@ class DataManager {
 
     if (isset($_POST["exam_added"])){
       echo "Exam added";
-      $count = $model->addExam($_POST["room_id"], $_POST["course_id"],
+      $count = $model->addExam($_POST["exam_id"], $_POST["room_id"], $_POST["course_id"],
                                $_GET["kythi_id"], $_POST["ngaythi"],
                                $_POST["cathi"]);
       header("Location: admin.php?location=kythi&&kythi_id=".$_GET["kythi_id"]."");

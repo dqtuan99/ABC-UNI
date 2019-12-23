@@ -19,19 +19,19 @@ class Data {
       select user_id, username, fullname
       from user
       where isAdmin = 0
-      order by fullname;
+      order by fullname asc;
     ");
 
     return $data;
   }
 
-  public function addStudent($username, $password, $fullname) {
+  public function addStudent($user_id, $username, $password, $fullname) {
     $db = new PDOData();
     $hashed = hash("sha256", $password);
     $count = $db->doPrepareSql("
-      insert into user (username, password, fullname)
-      values (?, ?, ?);
-    ", array($username, $hashed, $fullname));
+      insert into user (user_id, username, password, fullname)
+      values (?, ?, ?, ?);
+    ", array($user_id, $username, $hashed, $fullname));
 
     return $count;
   }
@@ -96,18 +96,19 @@ class Data {
       select h.*, u.fullname
       from hocphan h
       inner join user u
-      on u.user_id = h.teacher_id;
+      on u.user_id = h.teacher_id
+      order by h.hocphan_id desc;
     ");
 
     return $data;
   }
 
-  public function addCourse($ten_mon_hoc, $teacher_id) {
+  public function addCourse($hocphan_id, $ten_mon_hoc, $teacher_id) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
-      insert into hocphan (ten_mon_hoc, teacher_id)
-      values (?, ?);
-    ", array($ten_mon_hoc, $teacher_id));
+      insert into hocphan (hocphan_id, ten_mon_hoc, teacher_id)
+      values (?, ?, ?);
+    ", array($hocphan_id, $ten_mon_hoc, $teacher_id));
 
     return $count;
   }
@@ -143,18 +144,19 @@ class Data {
     $db = new PDOData();
     $data = $db->doQuery("
       select *
-      from kythi;
+      from kythi
+      order by kythi_id desc;
     ");
 
     return $data;
   }
 
-  public function addSemester($ten_ky_thi) {
+  public function addSemester($kythi_id, $ten_ky_thi) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
-      insert into kythi (ten_ky_thi)
-      values (?);
-    ", array($ten_ky_thi));
+      insert into kythi (kythi_id, ten_ky_thi)
+      values (?, ?);
+    ", array($kythi_id, $ten_ky_thi));
 
     return $count;
   }
@@ -197,7 +199,8 @@ class Data {
       on hp.hocphan_id = ct.hocphan_id
       inner join room r
       on r.room_id = ct.room_id
-      where ct.kythi_id = ?;
+      where ct.kythi_id = ?
+      order by ct.cathi_id;
     ", array($kythi_id));
 
     return $data;
@@ -214,12 +217,12 @@ class Data {
     return $data;
   }
 
-  public function addExam($room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi) {
+  public function addExam($exam_id, $room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi) {
     $db = new PDOData();
     $count = $db->doPrepareSql("
-      insert into cathi (room_id, hocphan_id, kythi_id, ngaythi, start, end)
-      values (?, ?, ?, ?, ?, ?);
-    ", array($room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi));
+      insert into cathi (cathi_id, room_id, hocphan_id, kythi_id, ngaythi, start, end)
+      values (?, ?, ?, ?, ?, ?, ?);
+    ", array($exam_id, $room_id, $hocphan_id, $kythi_id, $ngaythi, $cathi));
 
     return $count;
   }

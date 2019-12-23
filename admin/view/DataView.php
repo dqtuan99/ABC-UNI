@@ -31,6 +31,9 @@ class DataView {
       $html .= '
         <form method="post" action="">
         <input type="hidden" name="std_added" value="1"/>
+        User id:<br>
+        <input type="text" name="user_id" placeholder="User id" required>
+        <br>
         Username:<br>
         <input type="text" name="username" placeholder="Username" required>
         <br>
@@ -106,6 +109,9 @@ class DataView {
       $html .= '
         <form method="post" action="">
         <input type="hidden" name="course_added" value="1"/>
+        Course id:<br>
+        <input type="text" name="course_id" placeholder="Course id" required>
+        <br>
         Ten mon hoc:<br>
         <input type="text" name="course_name" placeholder="Ten mon hoc" required>
         <br>
@@ -150,8 +156,9 @@ class DataView {
     }
     else {
       foreach ($this->data as $row){
+        $new_path = $this->current_path . '&&hocphan_id=' . $row["hocphan_id"];
         $html .= '
-        <p>'.$row["hocphan_id"].'</p>
+        <a href="'.$new_path.'"><p>'.$row["hocphan_id"].'</p></a>
         <p>'.$row["ten_mon_hoc"].'</p>
         <p>'.$row["fullname"].'</p>
         <br />
@@ -175,6 +182,9 @@ class DataView {
       $html .= '
         <form method="post" action="">
         <input type="hidden" name="semester_added" value="1"/>
+        Semester id:<br>
+        <input type="text" name="semester_id" placeholder="Semester id" required>
+        <br>
         Semester name:<br>
         <input type="text" name="semester_name" placeholder="Semester name" required>
         <br>
@@ -240,6 +250,9 @@ class DataView {
       $html .= '
         <form method="post" action="">
         <input type="hidden" name="exam_added" value="1"/>
+        Exam id:<br>
+        <input type="text" name="exam_id" placeholder="Exam id" required>
+        <br>
         Room id:<br>
         <input type="text" name="room_id" placeholder="Room id" required>
         <br>
