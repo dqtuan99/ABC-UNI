@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Dec 23, 2019 at 03:57 PM
+-- Generation Time: Dec 23, 2019 at 06:01 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -49,7 +49,20 @@ INSERT INTO `cathi` (`cathi_id`, `room_id`, `hocphan_id`, `kythi_id`, `ngaythi`,
 (8, 1, 7, 3, '2019-12-28', 2),
 (9, 2, 7, 3, '2019-12-28', 3),
 (10, 3, 7, 3, '2019-12-28', 4),
-(11, 3, 7, 3, '2019-12-23', 1);
+(11, 3, 7, 3, '2019-12-23', 1),
+(30, 1, 6, 3, '2019-12-24', 1),
+(31, 2, 7, 3, '2019-12-26', 3),
+(32, 1, 8, 3, '2019-12-24', 2),
+(33, 2, 9, 3, '2019-12-28', 2),
+(34, 3, 10, 3, '2019-12-29', 3),
+(35, 1, 11, 3, '2019-12-29', 1),
+(36, 1, 12, 3, '2019-12-29', 2),
+(37, 1, 6, 3, '2019-12-29', 1),
+(38, 2, 6, 3, '2019-12-29', 2),
+(39, 1, 8, 3, '2019-12-29', 1),
+(40, 3, 8, 3, '2019-12-29', 2),
+(41, 3, 8, 3, '2019-12-29', 3),
+(42, 2, 10, 3, '2019-12-29', 1);
 
 -- --------------------------------------------------------
 
@@ -134,8 +147,10 @@ CREATE TABLE `sv_cathi` (
 --
 
 INSERT INTO `sv_cathi` (`sv_id`, `cathi_id`) VALUES
-(2, 2),
-(2, 8),
+(2, 32),
+(2, 34),
+(2, 35),
+(2, 36),
 (4, 2),
 (4, 8),
 (5, 3),
@@ -144,9 +159,12 @@ INSERT INTO `sv_cathi` (`sv_id`, `cathi_id`) VALUES
 (6, 9),
 (7, 4),
 (7, 9),
-(8, 2),
 (8, 5),
-(8, 8),
+(8, 31),
+(8, 32),
+(8, 34),
+(8, 35),
+(8, 36),
 (9, 5),
 (9, 10),
 (10, 5),
@@ -182,17 +200,26 @@ CREATE TABLE `sv_kythi_hocphan` (
 --
 
 INSERT INTO `sv_kythi_hocphan` (`sv_id`, `kythi_id`, `hocphan_id`, `banned`) VALUES
-(2, 3, 7, 0),
+(2, 3, 6, 0),
+(2, 3, 7, 1),
+(2, 3, 8, 0),
 (2, 3, 9, 0),
-(4, 3, 7, 0),
+(2, 3, 10, 0),
+(4, 3, 7, 1),
 (4, 3, 9, 0),
 (5, 3, 7, 0),
 (5, 3, 9, 0),
-(6, 3, 7, 0),
-(7, 3, 7, 0),
+(6, 3, 7, 1),
+(7, 3, 7, 1),
 (7, 3, 9, 0),
+(8, 3, 6, 0),
 (8, 3, 7, 0),
-(8, 3, 9, 0);
+(8, 3, 8, 0),
+(8, 3, 9, 1),
+(8, 3, 10, 0),
+(8, 3, 11, 0),
+(8, 3, 12, 0),
+(8, 3, 13, 0);
 
 -- --------------------------------------------------------
 
@@ -224,8 +251,28 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `fullname`, `isAdmin`) VA
 (9, 'testuser8', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Test Object 8', 0),
 (10, 'testuser9', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Test Object 9', 0),
 (11, 'bathanh12345', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Nguyen Ba Thanh69', 0),
-(12, 'bathanh1234', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Nguyen Ba Thanh', 0),
-(13, 'bathanh12345', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Nguyen Ba Thanh2', 0);
+(12, 'dung1', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Dang Anh Dung 1', 0),
+(13, 'dung3', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Dang Anh Dung 3', 0),
+(14, 'dung4', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Dang Anh Dung 4', 0),
+(15, 'dung5', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Dang Anh Dung 5', 0),
+(16, 'thanh1', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Nguyen Ba Thanh 1', 0),
+(17, 'thanh2', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Nguyen Ba Thanh 2', 0),
+(18, 'thanh3', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Nguyen Ba Thanh 3', 0),
+(19, 'thanh4', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Nguyen Ba Thanh 4', 0),
+(20, 'thanh5', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Nguyen Ba Thanh 5', 0),
+(21, 'thanh6', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Nguyen Ba Thanh 6', 0),
+(22, 'tuan1', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 1', 0),
+(23, 'tuan2', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 2', 0),
+(24, 'tuan3', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 3', 0),
+(25, 'tuan4', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 4', 0),
+(26, 'tuan5', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 5', 0),
+(27, 'tuan6', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 6', 0),
+(28, 'tuan7', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 7', 0),
+(29, 'tuan8', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 8', 0),
+(30, 'tuan9', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 9', 0),
+(31, 'tuan10', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 10', 0),
+(32, 'tuan11', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 12', 0),
+(124, 'User_name', 'e7cf3ef4f17c3999a94f2c6f612e8a888e5b1026878e4e19398b23bd38ec221a', 'FullName', 0);
 
 --
 -- Indexes for dumped tables
@@ -294,7 +341,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cathi`
 --
 ALTER TABLE `cathi`
-  MODIFY `cathi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cathi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `hocphan`
@@ -318,7 +365,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- Constraints for dumped tables

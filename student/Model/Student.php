@@ -59,7 +59,7 @@ class Student{
                                       and skh.kythi_id = c.kythi_id
       inner join user u on u.user_id = skh.sv_id
       inner join room r on r.room_id = c.room_id
-      where u.user_id = 8
+      where u.user_id = ?
             and skh.kythi_id = (select kythi_id from kythi order by kythi_id desc limit 1)
             and skh.banned = 0
       order by h.ten_mon_hoc, c.ngaythi, c.cathi, r.room_name;

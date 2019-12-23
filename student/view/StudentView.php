@@ -10,13 +10,20 @@ class StudentView {
   }
 
   public function studentExamListView() {
-    $html = "";
+    $html = '<div class="print-exam">';
 
     $html .= '
     <h1 class="text-center">IN ĐĂNG KÝ THI</h1>
     <p style="display:inline-block;">Họ và tên: <h5 style="display:inline-block; margin-left: 5px;"> '.$_SESSION["fullname"].'</h5></p>
     <p style="display:inline-block;">Username: <h5 style="display:inline-block; margin-left: 5px;"> '.$_SESSION["username"].'</h5></p>
     <p style="display:inline-block;">Mã số sinh viên: <h5 style="display:inline-block; margin-left: 5px;"> '.$_SESSION["user_id"].'</h5></p>
+
+    <button class="print btn btn-primary" name="print" onclick="printA()">In danh sách</button>
+    <script>
+    function printA(){
+      $(".print-exam").printThis();
+    }
+    </script>
     ';
 
     $html .= '
@@ -42,6 +49,7 @@ class StudentView {
     }
     $html.='
     </table>
+    </div>
     </div>
     </div>
     </div>';
@@ -143,7 +151,8 @@ class StudentView {
     </table>
     </div>
     </div>
-    </div>';
+    </div>
+    ';
 
     return $html;
   }

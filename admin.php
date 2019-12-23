@@ -12,6 +12,9 @@
 
   require_once("admin/control/DataManager.php");
   $dataMgr = new \admin\control\DataManager();
+
+  require_once("admin/control/ExcelControl.php");
+  $excelCtrl = new ExcelControl();
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +109,7 @@
       <?php elseif ($_GET["location"] == "student"): echo $dataMgr->showStudentList(); ?>
       <?php elseif ($_GET["location"] == "monhoc"): echo $dataMgr->showCourseList(); ?>
       <?php elseif ($_GET["location"] == "kythi"): echo $dataMgr->showSemesterList(); ?>
-      <?php elseif ($_GET["location"] == "excel"): echo $dataMgr->importExcel(); ?>
+      <?php elseif ($_GET["location"] == "excel"): echo $excelCtrl->importExcel(); ?>
       <?php endif; ?>
 
 

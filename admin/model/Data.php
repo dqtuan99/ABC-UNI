@@ -30,8 +30,10 @@ class Data {
     $hashed = hash("sha256", $password);
     $count = $db->doPrepareSql("
       insert into user (user_id, username, password, fullname)
-      values (?, ?, ?, ?);
-    ", array($user_id, $username, $hashed, $fullname));
+      values (?, ?, ?, ?)
+      ON DUPLICATE KEY UPDATE
+			username = ?, password = ?, fullname = ?;
+    ", array($user_id, $username, $hashed, $fullname, $username, $hashed, $fullname));
 
     return $count;
   }
@@ -295,5 +297,29 @@ class Data {
   }
 
   // ================================================================================================================
+
+
+  // Excel import section
+  // ================================================================================================================
+  public function addSv_CamThi($sv_id, $kythi_id, $hocphan_id) {
+    $db = new PDOData();
+    $count = $db->doPrepareSql("
+      update sv_kythi_hocphan
+      set banned = 1
+      where sv_id = ? and kythi_id = ? and hocphan_id = ?;
+    ", array($sv_id, $kythi_id, $hocphan_id));
+
+    return $count;
+  }
+
+  public function addSv_HocPhan($sv_id, $kythi_id, $hocphan_id) {
+    $db = new PDOData();
+    $count = $db->doPrepareSql("
+      insert into sv_kythi_hocphan (sv_id, kythi_id, hocphan_id)
+      values (?, ?, ?);
+    ", array($sv_id, $kythi_id, $hocphan_id));
+
+    return $count;
+  }
 
 }
