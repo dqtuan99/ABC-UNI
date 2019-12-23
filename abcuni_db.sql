@@ -8,7 +8,6 @@
 -- PHP Version: 7.3.2
 
 use abcuni_db;
--- temp
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
