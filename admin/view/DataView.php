@@ -155,15 +155,41 @@ class DataView {
       $html .= "Khong ton tai mon hoc nao.";
     }
     else {
+      // foreach ($this->data as $row){
+      //   $new_path = $this->current_path . '&&hocphan_id=' . $row["hocphan_id"];
+      //   $html .= '
+      //   <a href="'.$new_path.'"><p>'.$row["hocphan_id"].'</p></a>
+      //   <p>'.$row["ten_mon_hoc"].'</p>
+      //   <p>'.$row["fullname"].'</p>
+      //   <br />
+      //   ';
+      // }
+      $html .= '
+      <div>
+      <div id="table-wrapper">
+      <div id="table-scroll">
+      <table>
+      <tr>
+      <th>Mã Môn Học</th>
+      <th>Tên Môn học</th>
+      <th>Tên giảng viên</th>
+      <th></th>
+      </tr>';
       foreach ($this->data as $row){
-        $new_path = $this->current_path . '&&hocphan_id=' . $row["hocphan_id"];
         $html .= '
-        <a href="'.$new_path.'"><p>'.$row["hocphan_id"].'</p></a>
-        <p>'.$row["ten_mon_hoc"].'</p>
-        <p>'.$row["fullname"].'</p>
-        <br />
+        <tr>
+        <td>'.$row["hocphan_id"].'</td>
+        <td>'.$row["ten_mon_hoc"].'</td>
+        <td>'.$row["fullname"].'</td>
+        <td id="btnevd"><button id = "button-edit"><i class="fas fa-edit"></i></button><button id = "button-delete"><i class="fas fa-trash"></i></button></td>
+        </tr>
         ';
       }
+      $html.='
+      </table>
+      </div>
+      </div>
+      </div>';
     }
 
     return $html;
