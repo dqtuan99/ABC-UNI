@@ -5,7 +5,7 @@
   		header("Location: admin.php?location=home");
   	}
   	else {
-  		header("Location: student.php");
+  		header("Location: student.php?location=home");
   	}
   }
 ?>

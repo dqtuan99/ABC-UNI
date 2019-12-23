@@ -38,7 +38,7 @@ class AccountCtrl {
 					header("Location: admin.php?location=home");
 				}
 				else {
-					header("Location: student.php");
+					header("Location: student.php?location=home");
 				}
 			}
 			else {
@@ -54,10 +54,10 @@ class AccountCtrl {
 	}
 
 	public function doLogout() {
-		// session_destroy();
+		session_destroy();
 		// session_start();
-		unset($_SESSION["username"]);
-		unset($_SESSION["isAdmin"]);
+		// unset($_SESSION["username"]);
+		// unset($_SESSION["isAdmin"]);
 		header("Location: index.php");
 	}
 }

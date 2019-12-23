@@ -10,6 +10,8 @@
     header("Location: index.php");
   }
 
+  require_once("student/control/StudentControl.php");
+  $stdCtrl = new \student\control\StudentControl();
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,11 +46,11 @@
 
             <ul class="list-unstyled components">
                 <li>
-                  <a href="#"><i class="fas fa-home" style="margin-right:4px;"></i> Home</a>
+                  <a href="./student.php?location=student"><i class="fas fa-home" style="margin-right:4px;"></i> Home</a>
                   <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-skull-crossbones" style="margin-right:4px;"></i> Đăng ký môn thi</a>
                   <ul class="collapse list-unstyled" id="pageSubmenu">
                       <li>
-                          <a href="#"><i class="fas fa-skull-crossbones" style="margin-right:4px;"></i> Đăng ký thi ngành 1</a>
+                          <a href="./student.php?location=dangky"><i class="fas fa-skull-crossbones" style="margin-right:4px;"></i> Đăng ký thi ngành 1</a>
                       </li>
                   </ul>
                 </li>
@@ -56,7 +58,7 @@
                     <a href="#phopageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-print" style="margin-right:4px;"></i> In đăng ký thi</a>
                     <ul class="collapse list-unstyled" id="phopageSubmenu">
                         <li>
-                            <a href="#"><i class="fas fa-print" style="margin-right:4px;"></i> In đăng ký thi ngành 1</a>
+                            <a href="./student.php?location=indangky"><i class="fas fa-print" style="margin-right:4px;"></i> In đăng ký thi ngành 1</a>
                         </li>
                     </ul>
                 </li>
@@ -88,13 +90,17 @@
                 </div>
             </nav>
 
-            <h2>THÔNG BÁO - HƯỚNG DẪN</h2>
-            <div class="line"></div>
-            <p>- Thời gian đăng ký  thi trực tuyến: từ 11/12/2019 - 19/12/2019.</p>
-            <p>- Thời gian điều chỉnh đăng ký thi trực tuyến: từ 3/2/2020 - 16/2/2020 (2 tuần cuối của kỳ).</p>
-            <p>- Sinh viên các chương trình đào tạo chuẩn không đăng ký thi tại các lớp thi phần dành cho sinh viên các chương trình chất lượng cao thông tư 23.</p>
-            <p>- Ngược lại, sinh viên các chương trình chất lượng cao TT23 không đăng ký thi tại các lớp thi phần dành cho sinh viên chương trình đào tạo chuẩn.</p>
-            <div class="line"></div>
+            <?php if ($_GET["location"] == "home"): ?>
+              <h2>THÔNG BÁO - HƯỚNG DẪN</h2>
+              <div class="line"></div>
+              <p>- Thời gian đăng ký  thi trực tuyến: từ 11/12/2019 - 19/12/2019.</p>
+              <p>- Thời gian điều chỉnh đăng ký thi trực tuyến: từ 3/2/2020 - 16/2/2020 (2 tuần cuối của kỳ).</p>
+              <p>- Sinh viên các chương trình đào tạo chuẩn không đăng ký thi tại các lớp thi phần dành cho sinh viên các chương trình chất lượng cao thông tư 23.</p>
+              <p>- Ngược lại, sinh viên các chương trình chất lượng cao TT23 không đăng ký thi tại các lớp thi phần dành cho sinh viên chương trình đào tạo chuẩn.</p>
+              <div class="line"></div>
+            <?php elseif ($_GET["location"] == "dangky"):  ?>
+            <?php elseif ($_GET["location"] == "indangky"): echo $stdCtrl->showCaThi() ?>
+            <?php endif; ?>
         </div>
     </div>
 
