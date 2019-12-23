@@ -21,6 +21,23 @@ class StudentControl {
 
     echo $view->studentExamListView();
   }
+
+  public function showAvailableExam() {
+    $model = new \student\model\Student();
+    $data = $model->getAvailableExam($_SESSION["user_id"]);
+    for ($i = 0; $i < count($data); ++$i){
+      $current_slot = $model->getRoomSlotNum($data[$i]["cathi_id"])[0]["current_slot"];
+      $data[$i]["current_slot"] = $current_slot;
+    }
+    $view = new \student\view\StudentView($data);
+
+    echo $view->availableExamView();
+    $this->showCurrentExam();
+  }
+
+  public function showCurrentExam() {
+
+  }
 }
 
 ?>

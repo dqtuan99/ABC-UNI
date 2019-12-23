@@ -41,12 +41,12 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <a href='#'><h3><i class="fas fa-school"></i> ABC UNI</h3></a>
+                <a href='./student.php?location=home'><h3><i class="fas fa-school"></i> ABC UNI</h3></a>
             </div>
 
             <ul class="list-unstyled components">
                 <li>
-                  <a href="./student.php?location=student"><i class="fas fa-home" style="margin-right:4px;"></i> Home</a>
+                  <a href="./student.php?location=home"><i class="fas fa-home" style="margin-right:4px;"></i> Home</a>
                   <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-skull-crossbones" style="margin-right:4px;"></i> Đăng ký môn thi</a>
                   <ul class="collapse list-unstyled" id="pageSubmenu">
                       <li>
@@ -98,8 +98,8 @@
               <p>- Sinh viên các chương trình đào tạo chuẩn không đăng ký thi tại các lớp thi phần dành cho sinh viên các chương trình chất lượng cao thông tư 23.</p>
               <p>- Ngược lại, sinh viên các chương trình chất lượng cao TT23 không đăng ký thi tại các lớp thi phần dành cho sinh viên chương trình đào tạo chuẩn.</p>
               <div class="line"></div>
-            <?php elseif ($_GET["location"] == "dangky"):  ?>
-            <?php elseif ($_GET["location"] == "indangky"): echo $stdCtrl->showCaThi() ?>
+            <?php elseif ($_GET["location"] == "dangky"): $stdCtrl->showAvailableExam() ?>
+            <?php elseif ($_GET["location"] == "indangky"): $stdCtrl->showCaThi() ?>
             <?php endif; ?>
         </div>
     </div>

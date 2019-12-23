@@ -14,8 +14,9 @@ p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
+    /* line-height: 0em; */
+    margin: 0px;
+    color: #333333;
 }
 
 a, a:hover, a:focus {
