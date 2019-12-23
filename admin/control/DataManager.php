@@ -18,15 +18,15 @@ class DataManager {
 
     if (isset($_POST["std_added"])){
       $count = $model->addStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
-      header("Location: admin.php?location=student");
+      header("Location: http://localhost:8080/ABC-UNI/admin/student");
     }
     if (isset($_POST["std_modified"])){
       $count = $model->modifyStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
-      header("Location: admin.php?location=student");
+      header("Location: http://localhost:8080/ABC-UNI/admin/student");
     }
     if (isset($_GET["std_deleted"])){
       $count = $model->deleteStudent($_GET["user_id"]);
-      header("Location: admin.php?location=student");
+      header("Location: http://localhost:8080/ABC-UNI/admin/student");
     }
 
     $data = $model->getStudentList();
@@ -49,15 +49,15 @@ class DataManager {
     else {
       if (isset($_POST["course_added"])){
         $count = $model->addCourse($_POST["course_id"], $_POST["course_name"], $_POST["teacher_id"]);
-        header("Location: admin.php?location=monhoc");
+        header("Location: http://localhost:8080/ABC-UNI/admin/monhoc");
       }
       if (isset($_POST["course_modified"])){
         $count = $model->modifyCourse($_POST["course_id"], $_POST["course_name"], $_POST["teacher_id"]);
-        header("Location: admin.php?location=monhoc");
+        header("Location: http://localhost:8080/ABC-UNI/admin/monhoc");
       }
       if (isset($_GET["course_deleted"])){
         $count = $model->deleteCourse($_GET["course_id"]);
-        header("Location: admin.php?location=monhoc");
+        header("Location: http://localhost:8080/ABC-UNI/admin/monhoc");
       }
 
       $data = $model->getCourseList();
@@ -85,15 +85,15 @@ class DataManager {
 
     if (isset($_POST["room_added"])){
       $count = $model->addRoom($_POST["room_id"], $_POST["room_name"], $_POST["max_slot"]);
-      header("Location: admin.php?location=phongmay");
+      header("Location: http://localhost:8080/ABC-UNI/admin/phongmay");
     }
     if (isset($_POST["room_modified"])){
       $count = $model->modifyRoom($_POST["room_id"], $_POST["room_name"], $_POST["max_slot"]);
-      header("Location: admin.php?location=phongmay");
+      header("Location: http://localhost:8080/ABC-UNI/admin/phongmay");
     }
     if (isset($_GET["room_deleted"])){
       $count = $model->deleteRoom($_GET["room_id"]);
-      header("Location: admin.php?location=phongmay");
+      header("Location: http://localhost:8080/ABC-UNI/admin/phongmay");
     }
 
     $data = $model->getRoomList();
@@ -116,15 +116,15 @@ class DataManager {
     else {
       if (isset($_POST["semester_added"])){
         $count = $model->addSemester($_POST["semester_id"], $_POST["semester_name"]);
-        header("Location: admin.php?location=kythi");
+        header("Location: http://localhost:8080/ABC-UNI/admin/kythi");
       }
       if (isset($_POST["semester_modified"])){
         $count = $model->modifySemester($_POST["semester_id"], $_POST["semester_name"]);
-        header("Location: admin.php?location=kythi");
+        header("Location: http://localhost:8080/ABC-UNI/admin/kythi");
       }
       if (isset($_GET["semester_deleted"])){
         $count = $model->deleteSemester($_GET["semester_id"]);
-        header("Location: admin.php?location=kythi");
+        header("Location: http://localhost:8080/ABC-UNI/admin/kythi");
       }
 
       $data = $model->getSemesterList();
@@ -149,18 +149,18 @@ class DataManager {
       $count = $model->addExam($_POST["exam_id"], $_POST["room_id"], $_POST["course_id"],
                                $_GET["kythi_id"], $_POST["ngaythi"],
                                $_POST["cathi"]);
-      header("Location: admin.php?location=kythi&&kythi_id=".$_GET["kythi_id"]."");
+      header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
     }
     if (isset($_POST["exam_modified"])){
       echo "Exam added";
       $count = $model->modifyExam($_POST["exam_id"], $_POST["room_id"], $_POST["course_id"],
                                   $_GET["kythi_id"], $_POST["ngaythi"],
                                   $_POST["cathi"]);
-      header("Location: admin.php?location=kythi&&kythi_id=".$_GET["kythi_id"]."");
+      header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
     }
     if (isset($_GET["exam_deleted"])){
       $count = $model->deleteExam($_GET["exam_id"]);
-      header("Location: admin.php?location=kythi&&kythi_id=".$_GET["kythi_id"]."");
+      header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
     }
 
 
