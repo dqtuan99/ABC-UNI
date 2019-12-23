@@ -12,6 +12,21 @@ class DataView {
   public function __construct($data) {
     $this->data = $data;
     $this->current_path = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    $arr = explode('&&', $this->current_path);
+    $path = "";
+    for ($i = 0; $i < count($arr); ++$i){
+      if ($i == 0){
+        $path .= $arr[$i];
+      }
+      else {
+        if (strpos($arr[$i], 'modify') === false) {
+          $path .= '&&' . $arr[$i];
+        }
+      }
+    }
+    $this->current_path = $path;
+
     $this->addPath = $this->current_path . '&&modify=add';
     $this->modifyPath = $this->current_path . '&&modify=modify';
     $this->deletePath = $this->current_path . '&&modify=delete';
@@ -23,7 +38,6 @@ class DataView {
     $html .= '
     <a href="'.$this->addPath.'">Them SV</a>
     <a href="'.$this->modifyPath.'">Sua SV</a>
-    <a href="'.$this->deletePath.'">Xoa SV</a>
     ';
 
     if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
@@ -66,17 +80,6 @@ class DataView {
         </form>
       ';
     }
-    if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
-      $html .= '
-        <form method="post" action="">
-        <input type="hidden" name="std_deleted" value="1"/>
-        User id:<br>
-        <input type="text" name="user_id" placeholder="User id" required>
-        <br>
-        <input type="submit" value="Submit">
-        </form>
-      ';
-    }
 
     if (count($this->data) == 0) {
       $html .= "Khong ton tai sinh vien nao.";
@@ -99,7 +102,10 @@ class DataView {
         <td>'.$row["user_id"].'</td>
         <td>'.$row["username"].'</td>
         <td>'.$row["fullname"].'</td>
-        <td id="btnevd"><button id = "button-edit"><i class="fas fa-edit"></i></button><button id = "button-delete"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd">
+        <button id="button-edit" onclick="modify(this)"><i class="fas fa-edit"></i></button>
+        <button id="button-delete" onclick="remove(this)"><i class="fas fa-trash"></i></button>
+        </td>
         </tr>
         ';
       }
@@ -109,6 +115,20 @@ class DataView {
       </div>
       </div>';
 
+      $html .= '
+      <script>
+      function remove(obj){
+        var msv = obj.parentElement.parentElement.children[0].innerHTML;
+        var url = "./admin.php?location=student&&std_deleted=1&&user_id=" + msv;
+        location.replace(url);
+      }
+      function modify(obj){
+        var msv = obj.parentElement.parentElement.children[0].innerHTML;
+        var url = "./admin.php?location=student&&std_modified=1&&user_id=" + msv;
+        location.replace(url);
+      }
+      </script>
+      ';
     }
 
     return $html;
@@ -199,7 +219,7 @@ class DataView {
         <td>'.$row["hocphan_id"].'</td>
         <td>'.$row["ten_mon_hoc"].'</td>
         <td>'.$row["fullname"].'</td>
-        <td id="btnevd"><button id = "button-edit"><i class="fas fa-edit"></i></button><button id = "button-delete"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button id="button-edit"><i class="fas fa-edit"></i></button><button id="button-delete"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }
@@ -282,7 +302,7 @@ class DataView {
         <tr>
         <td ><a href="'.$new_path.'">'.$row["kythi_id"].'</a></td>
         <td>'.$row["ten_ky_thi"].'</td>
-        <td id="btnevd"><button id = "button-edit"><i class="fas fa-edit"></i></button><button id = "button-delete"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button id="button-edit"><i class="fas fa-edit"></i></button><button id="button-delete"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }
@@ -394,7 +414,7 @@ class DataView {
 		<td>'.$row["room_name"].'</td>
 		<td>'.$row["ngaythi"].'</td>
 		<td>'.$row["cathi"].'</td>
-        <td id="btnevd"><button id = "button-edit"><i class="fas fa-edit"></i></button><button id = "button-delete"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button id="button-edit"><i class="fas fa-edit"></i></button><button id="button-delete"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }

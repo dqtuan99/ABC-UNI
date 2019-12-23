@@ -20,12 +20,12 @@ class DataManager {
       $count = $model->addStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
       header("Location: admin.php?location=student");
     }
-    if (isset($_POST["std_modified"])){
-      $count = $model->modifyStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
-      header("Location: admin.php?location=student");
-    }
-    if (isset($_POST["std_deleted"])){
-      $count = $model->deleteStudent($_POST["user_id"]);
+    // if (isset($_POST["std_modified"])){
+    //   $count = $model->modifyStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
+    //   header("Location: admin.php?location=student");
+    // }
+    if (isset($_GET["std_deleted"])){
+      $count = $model->deleteStudent($_GET["user_id"]);
       header("Location: admin.php?location=student");
     }
 
@@ -33,6 +33,7 @@ class DataManager {
     $view = new \admin\view\DataView($data);
 
     echo $view->studentListView();
+
   }
   // ================================================================================================================
 
