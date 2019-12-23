@@ -32,10 +32,10 @@ class StudentView {
     <div id="table-scroll">
     <table>
     <tr>
-    <th>Tên Môn Học</th>
-    <th>Ngày thi</th>
-    <th>Ca thi</th>
-    <th>Phòng thi</th>
+    <th><h5>Tên Môn Học</h5></th>
+    <th><h5>Ngày thi</h5></th>
+    <th><h5>Ca thi</h5></th>
+    <th><h5>Phòng thi</h5></th>
     </tr>';
     foreach ($this->data as $row){
       $html .= '
@@ -69,14 +69,14 @@ class StudentView {
     <div id="table-scroll">
     <table>
     <tr>
-    <th>Mã Ca Thi</th>
-    <th>Mã Môn Học</th>
-    <th>Tên Môn Học</th>
-    <th>Ngày thi</th>
-    <th>Ca thi</th>
-    <th>Phòng thi</th>
-    <th>Số lượng</th>
-    <th></th>
+    <th><h5>Mã Ca Thi</h5></th>
+    <th><h5>Mã Môn Học</h5></th>
+    <th><h5>Tên Môn Học</h5></th>
+    <th><h5>Ngày thi</h5></th>
+    <th><h5>Ca thi</h5></th>
+    <th><h5>Phòng thi</h5></th>
+    <th><h5>Số lượng</h5></th>
+    <th><h5></h5></th>
     </tr>';
     foreach ($this->data as $row){
       $slot = $row["current_slot"] . '/' . $row["max_slot"];
@@ -121,14 +121,14 @@ class StudentView {
     <div id="table-scroll">
     <table>
     <tr>
-    <th>Mã Ca Thi</th>
-    <th>Mã Môn Học</th>
-    <th>Tên Môn Học</th>
-    <th>Ngày thi</th>
-    <th>Ca thi</th>
-    <th>Phòng thi</th>
-    <th>Số lượng</th>
-    <th></th>
+    <th><h5>Mã Ca Thi</h5></th>
+    <th><h5>Mã Môn Học</h5></th>
+    <th><h5>Tên Môn Học</h5></th>
+    <th><h5>Ngày thi</h5></th>
+    <th><h5>Ca thi</h5></th>
+    <th><h5>Phòng thi</h5></th>
+    <th><h5>Số lượng</h5></th>
+    <th><h5></h5></th>
     </tr>';
     foreach ($this->data as $row){
       $slot = $row["current_slot"] . '/' . $row["max_slot"];

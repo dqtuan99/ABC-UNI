@@ -89,13 +89,13 @@ class DataView {
 		$html .= '
       <div>
       <div id="table-wrapper">
-      <div id="table-scroll">
+      <div id="table-scroll1">
       <table>
       <tr>
-      <th>Mã Sinh viên</th>
-      <th>Tên tài khoản</th>
-      <th>Tên học sinh</th>
-      <th></th>
+      <th><h5>Mã Sinh viên</h5></th>
+      <th><h5>Tên tài khoản</h5></th>
+      <th><h5>Tên học sinh</h5></th>
+      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
       </tr>';
       foreach ($this->data as $row){
         $html .= '
@@ -104,8 +104,7 @@ class DataView {
         <td>'.$row["username"].'</td>
         <td>'.$row["fullname"].'</td>
         <td id="btnevd">
-        <button id="button-edit" onclick="modify(this)"><i class="fas fa-edit"></i></button>
-        <button id="button-delete" onclick="remove(this)"><i class="fas fa-trash"></i></button>
+        <button class="btn btn-success" id="button-delete" style="margin-left:40px;" onclick="remove(this)"><i class="fas fa-trash"></i></button>
         </td>
         </tr>
         ';
@@ -206,13 +205,13 @@ class DataView {
       $html .= '
       <div>
       <div id="table-wrapper">
-      <div id="table-scroll">
+      <div id="table-scroll1">
       <table>
       <tr>
-      <th>Mã Môn Học</th>
-      <th>Tên Môn học</th>
-      <th>Tên giảng viên</th>
-      <th></th>
+      <th><h5>Mã môn học</h5></th>
+      <th><h5>Tên môn học</h5></th>
+      <th><h5>Tên giảng viên</h5></th>
+      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
       </tr>';
       foreach ($this->data as $row){
         $html .= '
@@ -220,7 +219,7 @@ class DataView {
         <td>'.$row["hocphan_id"].'</td>
         <td>'.$row["ten_mon_hoc"].'</td>
         <td>'.$row["fullname"].'</td>
-        <td id="btnevd"><button id="button-edit"><i class="fas fa-edit"></i></button><button id="button-delete"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }
@@ -290,12 +289,12 @@ class DataView {
 		$html .= '
       <div>
       <div id="table-wrapper">
-      <div id="table-scroll">
+      <div id="table-scroll1">
       <table>
       <tr>
-      <th>Mã Sinh viên</th>
-      <th>Tên tài khoản</th>
-      <th></th>
+      <th><h5>Mã kỳ thi</h5></th>
+      <th><h5>Tên tài khoản</h5></th>
+      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
       </tr>';
       foreach ($this->data as $row){
 		$new_path = $this->current_path . '/id=' . $row["kythi_id"];
@@ -303,7 +302,7 @@ class DataView {
         <tr>
         <td ><a href="'.$new_path.'">'.$row["kythi_id"].'</a></td>
         <td>'.$row["ten_ky_thi"].'</td>
-        <td id="btnevd"><button id="button-edit"><i class="fas fa-edit"></i></button><button id="button-delete"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" style="margin-left:40px;"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }
@@ -394,19 +393,18 @@ class DataView {
 		$html .= '
       <div>
       <div id="table-wrapper">
-      <div id="table-scroll">
+      <div id="table-scroll1">
       <table>
       <tr>
-      <th>Mã ca thi</th>
-      <th>Mã học phần</th>
-	  <th>Tên môn học</th>
-	  <th>Phòng</th>
-	  <th>Ngày thi</th>
-	  <th>Ca thi</th>
-      <th></th>
+      <th><h5>Mã ca thi</h5></th>
+      <th><h5>Mã học phần</h5></th>
+	  <th><h5>Tên môn học</h5></th>
+	  <th><h5>Phòng</h5></th>
+	  <th><h5>Ngày thi</h5></th>
+	  <th><h5>Ca thi</h5></th>
+      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
       </tr>';
       foreach ($this->data as $row){
-		$new_path = $this->current_path . '&&kythi_id=' . $row["kythi_id"];
         $html .= '
         <tr>
         <td>'.$row["cathi_id"].'</td>
@@ -415,7 +413,7 @@ class DataView {
 		<td>'.$row["room_name"].'</td>
 		<td>'.$row["ngaythi"].'</td>
 		<td>'.$row["cathi"].'</td>
-        <td id="btnevd"><button id="button-edit"><i class="fas fa-edit"></i></button><button id="button-delete"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }
