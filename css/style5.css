@@ -25,6 +25,30 @@ a, a:hover, a:focus {
     transition: all 0.3s;
 }
 
+.button-del {
+    display: block;
+    width: 35px;
+    height: 35px;
+    background: #4E9CAF;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.button-add {
+    display: block;
+    width: 35px;
+    height: 35px;
+    background: #4E9CAF;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 .navbar {
     padding: 15px 10px;
     background: #fff;

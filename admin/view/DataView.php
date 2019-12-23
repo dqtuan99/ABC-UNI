@@ -11,7 +11,6 @@ class DataView {
 
   public function __construct($data) {
     $this->data = $data;
-
     $this->current_path = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $this->addPath = $this->current_path . '&&modify=add';
     $this->modifyPath = $this->current_path . '&&modify=modify';
@@ -109,7 +108,7 @@ class DataView {
       </div>
       </div>
       </div>';
-      
+
     }
 
     return $html;
@@ -292,7 +291,7 @@ class DataView {
       </div>
       </div>
       </div>';
-      
+
     }
 
     return $html;

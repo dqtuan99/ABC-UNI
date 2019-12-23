@@ -81,10 +81,12 @@ class StudentView {
       <td>'.$row["cathi"].'</td>
       <td>'.$row["room_name"].'</td>
       <td>'.$slot.'</td>
-      <td id="btnevd">';
+      <td style="padding-right: 0px;">';
       if ($row["available"]) {
-        $html .= '<button id = "button-add"><i class="fas fa-plus-circle"></i>';
-      }      
+        $html .= '
+        <a class="button-add" href="student.php?location=dangky&&add='.$row["cathi_id"].'"><i class="fas fa-plus-circle"></i></a>
+        ';
+      }
       $html .= '
       </td>
       </tr>
@@ -131,7 +133,9 @@ class StudentView {
       <td>'.$row["cathi"].'</td>
       <td>'.$row["room_name"].'</td>
       <td>'.$slot.'</td>
-      <td id="btnevd"><button id = "button-add"><i class="fas fa-plus-circle"></i></td>
+      <td style="padding-right: 0px;">
+        <a class="button-del" href="student.php?location=dangky&&delete='.$row["cathi_id"].'"><i class="fa fa-trash"></i></a>
+      </td>
       </tr>
       ';
     }

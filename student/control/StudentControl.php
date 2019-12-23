@@ -24,6 +24,16 @@ class StudentControl {
 
   public function showAvailableExam() {
     $model = new \student\model\Student();
+
+    if (isset($_GET["delete"])){
+      $count = $model->deleteStudentExam($_SESSION["user_id"], $_GET["delete"]);
+      header("Location: student.php?location=dangky");
+    }
+    if (isset($_GET["add"])){
+      $count = $model->AddStudentExam($_SESSION["user_id"], $_GET["add"]);
+      header("Location: student.php?location=dangky");
+    }
+
     $availableExam = $model->getAvailableExam($_SESSION["user_id"]);
     $currentExam = $model->getCurrentExam($_SESSION["user_id"]);
     for ($i = 0; $i < count($availableExam); ++$i){

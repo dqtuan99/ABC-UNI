@@ -38,6 +38,16 @@ class Student{
     return $count;
   }
 
+  public function deleteStudentExam($sv_id, $cathi_id) {
+    $db = new PDOData();
+    $count = $db->doPrepareSql("
+      delete from sv_cathi
+      where sv_id = ? and cathi_id = ?
+    ", array($sv_id, $cathi_id));
+
+    return $count;
+  }
+
   public function getAvailableExam($sv_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
