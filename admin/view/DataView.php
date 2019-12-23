@@ -83,14 +83,33 @@ class DataView {
       $html .= "Khong ton tai sinh vien nao.";
     }
     else {
+		$html .= '
+      <div>
+      <div id="table-wrapper">
+      <div id="table-scroll">
+      <table>
+      <tr>
+      <th>Mã Sinh viên</th>
+      <th>Tên tài khoản</th>
+      <th>Tên học sinh</th>
+      <th></th>
+      </tr>';
       foreach ($this->data as $row){
         $html .= '
-        <p>'.$row["user_id"].'</p>
-        <p>'.$row["username"].'</p>
-        <p>'.$row["fullname"].'</p>
-        <br />
+        <tr>
+        <td>'.$row["user_id"].'</td>
+        <td>'.$row["username"].'</td>
+        <td>'.$row["fullname"].'</td>
+        <td id="btnevd"><button id = "button-edit"><i class="fas fa-edit"></i></button><button id = "button-delete"><i class="fas fa-trash"></i></button></td>
+        </tr>
         ';
       }
+      $html.='
+      </table>
+      </div>
+      </div>
+      </div>';
+      
     }
 
     return $html;
@@ -156,13 +175,13 @@ class DataView {
     }
     else {
       // foreach ($this->data as $row){
-      //   $new_path = $this->current_path . '&&hocphan_id=' . $row["hocphan_id"];
-      //   $html .= '
-      //   <a href="'.$new_path.'"><p>'.$row["hocphan_id"].'</p></a>
-      //   <p>'.$row["ten_mon_hoc"].'</p>
-      //   <p>'.$row["fullname"].'</p>
-      //   <br />
-      //   ';
+        // $new_path = $this->current_path . '&&hocphan_id=' . $row["hocphan_id"];
+        // $html .= '
+        // <a href="'.$new_path.'"><p>'.$row["hocphan_id"].'</p></a>
+        // <p>'.$row["ten_mon_hoc"].'</p>
+        // <p>'.$row["fullname"].'</p>
+        // <br />
+        // ';
       // }
       $html .= '
       <div>
@@ -248,14 +267,32 @@ class DataView {
       $html .= "Khong ton tai ky thi nao.";
     }
     else {
+		$html .= '
+      <div>
+      <div id="table-wrapper">
+      <div id="table-scroll">
+      <table>
+      <tr>
+      <th>Mã Sinh viên</th>
+      <th>Tên tài khoản</th>
+      <th></th>
+      </tr>';
       foreach ($this->data as $row){
-        $new_path = $this->current_path . '&&kythi_id=' . $row["kythi_id"];
+		$new_path = $this->current_path . '&&kythi_id=' . $row["kythi_id"];
         $html .= '
-        <a href="'.$new_path.'"><p>'.$row["kythi_id"].'</p></a>
-        <p>'.$row["ten_ky_thi"].'</p>
-        <br />
+        <tr>
+        <td ><a href="'.$new_path.'">'.$row["kythi_id"].'</a></td>
+        <td>'.$row["ten_ky_thi"].'</td>
+        <td id="btnevd"><button id = "button-edit"><i class="fas fa-edit"></i></button><button id = "button-delete"><i class="fas fa-trash"></i></button></td>
+        </tr>
         ';
       }
+      $html.='
+      </table>
+      </div>
+      </div>
+      </div>';
+      
     }
 
     return $html;
@@ -334,17 +371,40 @@ class DataView {
       $html .= "<br />Ky thi nay khong ton tai ca thi nao ca.";
     }
     else {
+		$html .= '
+      <div>
+      <div id="table-wrapper">
+      <div id="table-scroll">
+      <table>
+      <tr>
+      <th>Mã ca thi</th>
+      <th>Mã học phần</th>
+	  <th>Tên môn học</th>
+	  <th>Phòng</th>
+	  <th>Ngày thi</th>
+	  <th>Ca thi</th>
+      <th></th>
+      </tr>';
       foreach ($this->data as $row){
+		$new_path = $this->current_path . '&&kythi_id=' . $row["kythi_id"];
         $html .= '
-        <p>'.$row["cathi_id"].'</p>
-        <p>'.$row["hocphan_id"].'</p>
-        <p>'.$row["ten_mon_hoc"].'</p>
-        <p>'.$row["room_name"].'</p>
-        <p>'.$row["ngaythi"].'</p>
-        <p>'.$row["cathi"].'</p>
-        <br />
+        <tr>
+        <td>'.$row["cathi_id"].'</td>
+        <td>'.$row["hocphan_id"].'</td>
+		<td>'.$row["ten_mon_hoc"].'</td>
+		<td>'.$row["room_name"].'</td>
+		<td>'.$row["ngaythi"].'</td>
+		<td>'.$row["cathi"].'</td>
+        <td id="btnevd"><button id = "button-edit"><i class="fas fa-edit"></i></button><button id = "button-delete"><i class="fas fa-trash"></i></button></td>
+        </tr>
         ';
       }
+      $html.='
+      </table>
+      </div>
+      </div>
+      </div>';
+
     }
 
     return $html;
