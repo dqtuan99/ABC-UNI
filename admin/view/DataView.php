@@ -30,7 +30,7 @@ class DataView {
 
     $this->addPath = $this->current_path . '/add';
     $this->modifyPath = $this->current_path . '/modify';
-    $this->deletePath = $this->current_path . '/delete';
+    // $this->deletePath = $this->current_path . '/delete';
   }
 
   public function studentListView() {
@@ -78,7 +78,10 @@ class DataView {
     }
 
     if (count($this->data) == 0) {
-      $html .= "Khong ton tai sinh vien nao.";
+      $html .= '
+      <br />Khong ton tai sinh vien nao.<br /><br />
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i> Add now</button></a>
+      ';
     }
     else {
 		$html .= '
@@ -164,20 +167,23 @@ class DataView {
         </form>
       ';
     }
-    if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
-      $html .= '
-        <form method="post" action="">
-        <input type="hidden" name="course_deleted" value="1"/>
-        Course id:<br>
-        <input type="text" name="course_id" placeholder="Course id" required>
-        <br>
-        <input type="submit" value="Submit">
-        </form>
-      ';
-    }
+    // if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
+    //   $html .= '
+    //     <form method="post" action="">
+    //     <input type="hidden" name="course_deleted" value="1"/>
+    //     Course id:<br>
+    //     <input type="text" name="course_id" placeholder="Course id" required>
+    //     <br>
+    //     <input type="submit" value="Submit">
+    //     </form>
+    //   ';
+    // }
 
     if (count($this->data) == 0) {
-      $html .= "Khong ton tai mon hoc nao.";
+      $html .= '
+      <br />Khong ton tai mon hoc nao.<br /><br />
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i> Add now</button></a>
+      ';
     }
     else {
       $html .= '
@@ -261,20 +267,23 @@ class DataView {
         </form>
       ';
     }
-    if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
-      $html .= '
-        <form method="post" action="">
-        <input type="hidden" name="room_deleted" value="1"/>
-        Room id:<br>
-        <input type="text" name="room_id" placeholder="Room id" required>
-        <br>
-        <input type="submit" value="Submit">
-        </form>
-      ';
-    }
+    // if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
+    //   $html .= '
+    //     <form method="post" action="">
+    //     <input type="hidden" name="room_deleted" value="1"/>
+    //     Room id:<br>
+    //     <input type="text" name="room_id" placeholder="Room id" required>
+    //     <br>
+    //     <input type="submit" value="Submit">
+    //     </form>
+    //   ';
+    // }
 
     if (count($this->data) == 0) {
-      $html .= "Khong ton tai phong may nao.";
+      $html .= '
+      <br />Khong ton tai phong may nao.<br /><br />
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i> Add now</button></a>
+      ';
     }
     else {
       $html .= '
@@ -351,20 +360,23 @@ class DataView {
         </form>
       ';
     }
-    if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
-      $html .= '
-        <form method="post" action="">
-        <input type="hidden" name="semester_deleted" value="1"/>
-        Semester id:<br>
-        <input type="text" name="semester_id" placeholder="Semester id" required>
-        <br>
-        <input type="submit" value="Submit">
-        </form>
-      ';
-    }
+    // if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
+    //   $html .= '
+    //     <form method="post" action="">
+    //     <input type="hidden" name="semester_deleted" value="1"/>
+    //     Semester id:<br>
+    //     <input type="text" name="semester_id" placeholder="Semester id" required>
+    //     <br>
+    //     <input type="submit" value="Submit">
+    //     </form>
+    //   ';
+    // }
 
     if (count($this->data) == 0) {
-      $html .= "Khong ton tai ky thi nao.";
+      $html .= '
+      <br />Khong ton tai ky thi nao.<br /><br />
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i> Add now</button></a>
+      ';
     }
     else {
 		$html .= '
@@ -385,7 +397,7 @@ class DataView {
         $html .= '
         <tr>
         <td ><a href="'.$new_path.'">'.$row["kythi_id"].'</a></td>
-        <td>'.$row["ten_ky_thi"].'</td>
+        <td><a href="'.$new_path.'">'.$row["ten_ky_thi"].'</a></td>
         <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" style="margin-left:40px;" onclick="remove('.$row["kythi_id"].')"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
@@ -463,20 +475,23 @@ class DataView {
         </form>
       ';
     }
-    if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
-      $html .= '
-        <form method="post" action="">
-        <input type="hidden" name="exam_deleted" value="1"/>
-        Exam id:<br>
-        <input type="text" name="exam_id" placeholder="Exam id" required>
-        <br>
-        <input type="submit" value="Submit">
-        </form>
-      ';
-    }
+    // if (isset($_GET["modify"]) && $_GET["modify"] == "delete"){
+    //   $html .= '
+    //     <form method="post" action="">
+    //     <input type="hidden" name="exam_deleted" value="1"/>
+    //     Exam id:<br>
+    //     <input type="text" name="exam_id" placeholder="Exam id" required>
+    //     <br>
+    //     <input type="submit" value="Submit">
+    //     </form>
+    //   ';
+    // }
 
     if (count($this->data) == 0) {
-      $html .= "<br />Ky thi nay khong ton tai ca thi nao ca.";
+      $html .= '
+      <br />Ky thi nay khong ton tai ca thi nao ca.<br /><br />
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i> Add now</button></a>
+      ';
     }
     else {
       $html .= '
@@ -488,6 +503,7 @@ class DataView {
       <th><h5>Mã ca thi</h5></th>
       <th><h5>Mã học phần</h5></th>
       <th><h5>Tên môn học</h5></th>
+      <th><h5>Mã Phòng</h5></th>
       <th><h5>Phòng</h5></th>
       <th><h5>Ngày thi</h5></th>
       <th><h5>Ca thi</h5></th>
@@ -502,6 +518,7 @@ class DataView {
         <td>'.$row["cathi_id"].'</td>
         <td>'.$row["hocphan_id"].'</td>
         <td>'.$row["ten_mon_hoc"].'</td>
+        <td>'.$row["room_id"].'</td>
         <td>'.$row["room_name"].'</td>
         <td>'.$row["ngaythi"].'</td>
         <td>'.$row["cathi"].'</td>
