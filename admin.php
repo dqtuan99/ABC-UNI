@@ -47,11 +47,24 @@
 
       <ul class="list-unstyled components">
         <li>
-          <a href="./admin.php?location=student"><i class="fas fa-user" style="margin-right:4px;"></i> Sinh viên</a>
-          <a href="./admin.php?location=monhoc"><i class="fas fa-book-open " style="margin-right:4px;"></i> Môn học</a>
+          <a href="./admin.php?location=student"><div style="display:inline-block; width: 30px;">
+            <i class="fas fa-user" style="margin-right:4px;"></i>
+          </div> Sinh viên</a>
         </li>
         <li>
-          <a href="./admin.php?location=kythi"><i class="fas fa-eye-dropper" style="margin-right:4px;"></i> Kỳ thi</a>
+          <a href="./admin.php?location=monhoc"><div style="display:inline-block; width: 30px;">
+            <i class="fas fa-book-open " style="margin-right:4px;"></i>
+          </div> Môn học</a>
+        </li>
+        <li>
+          <a href="./admin.php?location=kythi"><div style="display:inline-block; width: 30px;">
+            <i class="fas fa-eye-dropper" style="margin-right:4px;"></i>
+          </div> Kỳ thi</a>
+        </li>
+        <li>
+          <a href="./admin.php?location=excel"><div style="display:inline-block; width: 30px;">
+            <i class="fas fa-file-excel" style="margin-right:4px;"></i>
+          </div> Import Excel</a>
         </li>
       </ul>
     </nav>
@@ -92,6 +105,7 @@
       <?php elseif ($_GET["location"] == "student"): echo $dataMgr->showStudentList(); ?>
       <?php elseif ($_GET["location"] == "monhoc"): echo $dataMgr->showCourseList(); ?>
       <?php elseif ($_GET["location"] == "kythi"): echo $dataMgr->showSemesterList(); ?>
+      <?php elseif ($_GET["location"] == "excel"): echo $dataMgr->importExcel(); ?>
       <?php endif; ?>
 
 
