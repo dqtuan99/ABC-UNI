@@ -88,8 +88,9 @@
                             <li class="nav-item">
                               <a class="nav-link" href=""><span class="span-btn">Chào mừng: <?php echo $_SESSION["fullname"]; ?></span></a>
                             </li>
-                            <div class="dropdown-content" aria-labelledby="dropdownMenuButton">
-                              <a class="nav-link" href="./index.php?logout">Log out</a>
+                            <div class="dropdown-content dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item grow-lg nav-link text-center" href="">Profile</a>
+                              <a class="dropdown-item grow-lg nav-link text-center" href="./index.php?logout">Log out</a>
                             </div>
                           </div>
                         </ul>
