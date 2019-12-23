@@ -17,33 +17,26 @@ class StudentView {
     <p style="display:inline-block;">Họ và tên: <h5 style="display:inline-block; margin-left: 5px;"> '.$_SESSION["fullname"].'</h5></p>
     <p style="display:inline-block;">Username: <h5 style="display:inline-block; margin-left: 5px;"> '.$_SESSION["username"].'</h5></p>
     <p style="display:inline-block;">Mã số sinh viên: <h5 style="display:inline-block; margin-left: 5px;"> '.$_SESSION["user_id"].'</h5></p>
-
-    <button class="print btn btn-primary" name="print" onclick="printA()">In danh sách</button>
-    <script>
-    function printA(){
-      $(".print-exam").printThis();
-    }
-    </script>
     ';
 
     $html .= '
     <div>
     <div id="table-wrapper">
     <div id="table-scroll">
-    <table>
+    <table style="border:none; width: 100%; border-collapse:collapse;">
     <tr>
-    <th><h5>Tên Môn Học</h5></th>
-    <th><h5>Ngày thi</h5></th>
-    <th><h5>Ca thi</h5></th>
-    <th><h5>Phòng thi</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Tên Môn Học</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Ngày thi</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Ca thi</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Phòng thi</h5></th>
     </tr>';
     foreach ($this->data as $row){
       $html .= '
       <tr>
-      <td>'.$row["ten_mon_hoc"].'</td>
-      <td>'.$row["ngaythi"].'</td>
-      <td>'.$row["cathi"].'</td>
-      <td>'.$row["room_name"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["ten_mon_hoc"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["ngaythi"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["cathi"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["room_name"].'</td>
       </tr>
       ';
     }
@@ -52,7 +45,13 @@ class StudentView {
     </div>
     </div>
     </div>
-    </div>';
+    </div>
+    <button class="print btn btn-info" name="print" onclick="printA()" style="float: right; margin-right: 15px; min-width: 140px;">IN DANH SÁCH</button>
+    <script>
+    function printA(){
+      $(".print-exam").printThis();
+    }
+    </script>';
 
     return $html;
   }

@@ -263,7 +263,9 @@ class DataManager {
     $model = new \admin\model\Data();
     $data = $model->getExamListBySemester($_GET["kythi_id"]);
     $semester_name = $model->getSemesterName($_GET["kythi_id"])[0]["ten_ky_thi"];
-    echo '<h2 class="text-center">'.$semester_name.'</h2>' . '<br />';
+    echo '<div class="print-exam"><h2 class="text-center">'.$semester_name.'</h2>' . '<br />';
+
+
 
     if (isset($_POST["exam_added"])){
       $exam_id = Util::clean($_POST["exam_id"], 20);
@@ -356,6 +358,15 @@ class DataManager {
     // Nếu ấn nút get all, chuyển qua giao diện in danh sách thí sinh dự thi
     // theo từng phòng thi của các ca thi
     if (isset($_GET["getAll"])){
+      echo '
+      <div class="text-center" style="margin-bottom: 20px; margin-top: -10px;">
+      <button class="print btn btn-info" name="print" onclick="printA()">IN DANH SÁCH</button>
+      </div>
+      <script>
+      function printA(){
+        $(".print-exam").printThis();
+      }
+      </script>';
       $examGroup = $model->groupBy_CaThi_NgayThi_PhongThi($_GET["kythi_id"]);
       foreach ($examGroup as $group){
         $stdList = $model->getStudentByExam($group["cathi"], $group["ngaythi"], $group["room_id"]);
@@ -367,6 +378,7 @@ class DataManager {
       $view = new \admin\view\DataView($data);
       echo $view->examListView();
     }
+    echo '</div>';
   }
   // ================================================================================================================
 

@@ -47,7 +47,7 @@ class Student{
 
     return $count;
   }
-
+  // Lấy ra danh sách các ca thi mà sinh viên hiện tại có thể đăng ký
   public function getAvailableExam($sv_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
@@ -67,7 +67,7 @@ class Student{
 
     return $data;
   }
-
+  // Lấy ra danh sách ca thi hiện tại sinh viên có
   public function getCurrentExam($sv_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
@@ -81,7 +81,7 @@ class Student{
 
     return $data;
   }
-
+  // Lấy ra số slot hiện tại của phòng thi
   public function getRoomSlotNum($cathi_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("

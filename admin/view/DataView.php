@@ -424,7 +424,7 @@ class DataView {
 
   public function examListView() {
     $getAllPath = $this->current_path . '/getall';
-    $html = "";
+    $html ='';
 
     $html .= '
     <div class="text-center"><button class="btn btn-info" id="get-all"><a href="'.$getAllPath.'" class="getall-content">GET ALL</a></button></div>
@@ -549,7 +549,7 @@ class DataView {
   }
 
   public function studentByExamView() {
-    $html = "";
+    $html = '';
 
     $html .= '<div class="text-center"><h5>Ca thi: '.$this->data[0]["cathi"].'</h5></div>';
     $html .= '<div class="text-center"><h5>Ngay thi: '.$this->data[0]["ngaythi"].'</h5></div>';
@@ -559,25 +559,27 @@ class DataView {
 
     $html .= '
     <div>
+    <div>
     <div id="table-wrapper">
     <div id="table-scroll">
-    <table>
+    <table style="border:none; width: 100%; border-collapse:collapse;">
     <tr>
-    <th style="width: 150px;"><h5>Mã sinh viên</h5></th>
-    <th style="width: 250px;"><h5>Username</h5></th>
-    <th><h5>Họ và tên</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Mã sinh viên</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Username</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Họ và tên</h5></th>
     </tr>';
     foreach ($this->data as $row){
       $html .= '
       <tr>
-      <td>'.$row["sv_id"].'</td>
-      <td>'.$row["username"].'</td>
-      <td>'.$row["fullname"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["sv_id"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["username"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["fullname"].'</td>
       </tr>
       ';
     }
     $html.='
     </table>
+    </div>
     </div>
     </div>
     </div>';

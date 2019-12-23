@@ -346,7 +346,7 @@ th, td { */
   color: #fff;
 }
 .dropdown-content{
-  max-width: 20px;
+  max-width: 100px;
 }
 
 .dropdown-menu {
