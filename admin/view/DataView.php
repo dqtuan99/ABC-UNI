@@ -295,13 +295,13 @@ class DataView {
       $html .= '
       <div>
       <div id="table-wrapper">
-      <div id="table-scroll">
+      <div id="table-scroll1">
       <table>
       <tr>
-      <th>Mã Phòng Máy</th>
-      <th>Tên Phòng Máy</th>
-      <th>Maximum Slot</th>
-      <th></th>
+      <th><h5>Mã phòng máy</h5></th>
+      <th><h5>Tên phòng máy</h5></th>
+      <th><h5>Số máy tối đa</h5></th>
+      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
       </tr>';
       foreach ($this->data as $row){
         $html .= '
@@ -309,8 +309,7 @@ class DataView {
         <td>'.$row["room_id"].'</td>
         <td>'.$row["room_name"].'</td>
         <td>'.$row["max_slot"].'</td>
-        <td id="btnevd"><button id="button-edit"><i class="fas fa-edit"></i></button><button id="button-delete"><i class="fas fa-trash"></i></button></td>
-        </tr>
+        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" style="margin-left:40px;"><i class="fas fa-trash"></i></button></td>
         ';
       }
       $html.='

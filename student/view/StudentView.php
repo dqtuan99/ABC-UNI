@@ -13,7 +13,7 @@ class StudentView {
     $html = '<div class="print-exam">';
 
     $html .= '
-    <h1 class="text-center">IN ĐĂNG KÝ THI</h1>
+    <h2 class="text-center">IN ĐĂNG KÝ THI</h2>
     <p style="display:inline-block;">Họ và tên: <h5 style="display:inline-block; margin-left: 5px;"> '.$_SESSION["fullname"].'</h5></p>
     <p style="display:inline-block;">Username: <h5 style="display:inline-block; margin-left: 5px;"> '.$_SESSION["username"].'</h5></p>
     <p style="display:inline-block;">Mã số sinh viên: <h5 style="display:inline-block; margin-left: 5px;"> '.$_SESSION["user_id"].'</h5></p>
@@ -61,7 +61,7 @@ class StudentView {
     $html = "";
 
     $html .= '
-    <h1 class="text-center">ĐĂNG KÝ THI</h1>';
+    <h2 class="text-center">ĐĂNG KÝ THI</h2>';
 
     $html .= '
     <div>
@@ -113,7 +113,7 @@ class StudentView {
     $html = "";
 
     $html .= '
-    <h1 class="text-center">Các môn đã đăng ký</h1>';
+    <h2 class="text-center">Các môn đã đăng ký</h2>';
 
     $html .= '
     <div>

@@ -61,7 +61,7 @@
           </div> Môn học</a>
         </li>
         <li>
-          <a href="./admin.php?location=phongmay"><div style="display:inline-block; width: 30px;">
+          <a href="admin/phongmay"><div style="display:inline-block; width: 30px;">
             <i class="fas fa-laptop" style="margin-right:4px;"></i>
           </div> Phòng máy</a>
         </li>
