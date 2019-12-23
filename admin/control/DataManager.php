@@ -33,7 +33,7 @@ class DataManager {
     $view = new \admin\view\DataView($data);
 
     echo $view->studentListView();
-
+    
   }
   // ================================================================================================================
 
