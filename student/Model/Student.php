@@ -58,6 +58,20 @@ class Student{
     return $data;
   }
 
+  public function getCurrentExam($sv_id) {
+    $db = new PDOData();
+    $data = $db->doPreparedQuery("
+    select sc.*, c.ngaythi, c.cathi, c.kythi_id, r.*, h.*
+    from sv_cathi sc
+    inner join cathi c on sc.cathi_id = c.cathi_id
+    inner join room r on c.room_id = r.room_id
+    inner join hocphan h on c.hocphan_id = h.hocphan_id
+    where sc.sv_id = ? and c.kythi_id = (select kythi_id from kythi order by kythi_id desc limit 1);
+    ", array($sv_id));
+
+    return $data;
+  }
+
   public function getRoomSlotNum($cathi_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("

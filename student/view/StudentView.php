@@ -61,6 +61,7 @@ class StudentView {
     <div id="table-scroll">
     <table>
     <tr>
+    <th>Mã Ca Thi</th>
     <th>Mã Môn Học</th>
     <th>Tên Môn Học</th>
     <th>Ngày thi</th>
@@ -73,6 +74,57 @@ class StudentView {
       $slot = $row["current_slot"] . '/' . $row["max_slot"];
       $html .= '
       <tr>
+      <td>'.$row["cathi_id"].'</td>
+      <td>'.$row["hocphan_id"].'</td>
+      <td>'.$row["ten_mon_hoc"].'</td>
+      <td>'.$row["ngaythi"].'</td>
+      <td>'.$row["cathi"].'</td>
+      <td>'.$row["room_name"].'</td>
+      <td>'.$slot.'</td>
+      <td id="btnevd">';
+      if ($row["available"]) {
+        $html .= '<button id = "button-add"><i class="fas fa-plus-circle"></i>';
+      }      
+      $html .= '
+      </td>
+      </tr>
+      ';
+    }
+    $html.='
+    </table>
+    </div>
+    </div>
+    </div>';
+
+    return $html;
+  }
+
+  public function currentExamView() {
+    $html = "";
+
+    $html .= '
+    <h1 class="text-center">Các môn đã đăng ký</h1>';
+
+    $html .= '
+    <div>
+    <div id="table-wrapper">
+    <div id="table-scroll">
+    <table>
+    <tr>
+    <th>Mã Ca Thi</th>
+    <th>Mã Môn Học</th>
+    <th>Tên Môn Học</th>
+    <th>Ngày thi</th>
+    <th>Ca thi</th>
+    <th>Phòng thi</th>
+    <th>Số lượng</th>
+    <th></th>
+    </tr>';
+    foreach ($this->data as $row){
+      $slot = $row["current_slot"] . '/' . $row["max_slot"];
+      $html .= '
+      <tr>
+      <td>'.$row["cathi_id"].'</td>
       <td>'.$row["hocphan_id"].'</td>
       <td>'.$row["ten_mon_hoc"].'</td>
       <td>'.$row["ngaythi"].'</td>
@@ -90,10 +142,6 @@ class StudentView {
     </div>';
 
     return $html;
-  }
-
-  public function currentExamView() {
-    
   }
 
 }
