@@ -1,100 +1,39 @@
 <?php
 
-require_once("Connect/mysql/PDOData.php");
+namespace student\model;
+use core\data\model\PDOData;
+
+require_once("core/data/PDOData.php");
 
 class Student{
-
   public function __contruct() {
 
   }
 
-  //Lấy danh sách tất cả học sinh
-  public function getAll() {
-    $db = new PDOData();
-    $ret = $db->doQuery("
-      select p.*
-      from students s
-      inner join profiles p
-      on p.student_id = s.student_id;
-    ");
-
-    return $ret;
-  }
-
-  //Lấy danh sách học sinh theo lớp
-  public function getStudentByClass($class_id) {
+  //Lấy ra danh sách ca thi sinh viên đã đăng kí
+  public function SelectStudentExam($sv_id) {
     $db = new PDOData();
     $ret = $db->doPreparedQuery("
-      select p.*
-      from students s
-      inner join profiles p
-      on p.student_id = s.student_id
-      inner join classes c
-      on c.class_id = s.class_id
-      where c.class_id = ?;
-    ", array($class_id));
+      select c.cathi_id, r.room_name, h.ten_mon_hoc, c.ngaythi, c.cathi
+      from cathi c
+      inner join room r on r.room_id = c.room_id
+      inner join hocphan h on h.hocphan_id = c.hocphan_id
+      inner join sv_cathi s on s.cathi_id = c.cathi_id
+      where s.sv_id = ?;
+    ", array($sv_id));
 
     return $ret;
   }
 
-  //Lấy danh sách học sinh theo kỳ thi
-  public function getStudentInExam($exam_id) {
-    $db =new PDOData();
-    $ret = $db->doPreparedQuery("
-      select p.*
-      from studentsexams se
-      inner join profiles p
-      on p.student_id = se.student_id
-      inner join exams e
-      on e.exam_id = se.exam_id
-      where e.exam_id = ?;
-    ", array($exam_id));
-
-    return $ret;
-  }
-
-  //Lấy danh sách tất cả các kỳ thi
-  public function getExam(){
+  //Thêm học sinh vào danh sách ca thi
+  public function AddStudentExam($sv_id, $cathi_id) {
     $db = new PDOData();
-    $ret = $db->doQuery("
-      select *
-      from exams;
-    ");
+    $count = $db->doPrepareSql("
+      INSERT INTO sv_cathi(sv_id, cathi_id)
+      VALUES (?, ?);
+    ", array($sv_id, $cathi_id));
 
-    return $ret;
+    return $count;
   }
 
-  //Lấy danh sách các kỳ thi mà học sinh với student_id tham gia
-  public function getExamByStudent($student_id) {
-    $db = new PDOData();
-    $ret = $db->doPreparedQuery("
-      select e.*
-      from exams e
-      inner join studentsexams se
-      on se.exam_id = e.exam_id
-      where se.student_id = ?;
-    ", array($student_id));
-    return $ret;
-  }
-
-  //Tạo kỳ thi mới
-  public function CreateExam($class_id, $exam_date, $Time_started,
-                             $Time_finished, $exam_room, $exam_limit) {
-    $db = new PDOData();
-    $ret = $db->doPrepareSql("
-      insert into exams (class_id, exam_date, Time_started, Time_finished, exam_room, exam_limit)
-      values (?, ?, ?, ?, ?, ?);
-    ", array($class_id, $exam_date, $Time_started, $Time_finished, $exam_room, $exam_room));
-
-    return $ret;
-  }
-
-  //Thêm sinh viên vào kỳ thi
-  public function AddStudentExam($student_id, $exam_id) {
-    $db = new PDOData();
-    $db->doPrepareSql("
-    insert into studentsexams (student_id, exam_id)
-    values (?, ?);
-    ", array($student_id, $exam_id));
-  }
 }

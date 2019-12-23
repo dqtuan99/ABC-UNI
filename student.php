@@ -1,3 +1,16 @@
+<?php
+  include("header.php");
+
+  if (isset($_SESSION["username"])) {
+    if ($_SESSION["isAdmin"] == 1) {
+  		header("Location: admin.php?location=home");
+  	}
+  }
+  else {
+    header("Location: index.php");
+  }
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -68,7 +81,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Chào mừng:  Nguyễn Bá Thành - 17021016</a>
+                                <a class="nav-link" href="./index.php?logout">Chào mừng: <?php echo $_SESSION["fullname"].' - '.$_SESSION["user_id"]; ?></a>
                             </li>
                         </ul>
                     </div>

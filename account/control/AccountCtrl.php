@@ -14,6 +14,9 @@ class AccountCtrl {
 		if (isset($_POST["username"]) && $_POST["username"] != ""){
 			$this->doLogin();
 		}
+    if (isset($_GET["logout"])){
+			$this->doLogout();
+		}
 	}
 
 	public function doLogin() {
@@ -26,12 +29,12 @@ class AccountCtrl {
 			if ($account->checkAccount($_POST["username"], $_POST["password"])){
 				$_SESSION["username"] = $_POST["username"];
 
-				$infor = $account->getAccountInformation($_SESSION["username"]);
+				$infor = $account->getAccountInformation($_POST["username"]);
 				$_SESSION["user_id"] = $infor["user_id"];
 				$_SESSION["fullname"] = $infor["fullname"];
 				$_SESSION["isAdmin"] = $infor["isAdmin"];
 
-				if ($_SESSION["isAdmin"]) {
+				if ($_SESSION["isAdmin"] == 1) {
 					header("Location: admin.php?location=home");
 				}
 				else {
@@ -51,10 +54,10 @@ class AccountCtrl {
 	}
 
 	public function doLogout() {
-		session_destroy();
+		// session_destroy();
 		// session_start();
-		// unset($_SESSION["username"]);
+		unset($_SESSION["username"]);
+		unset($_SESSION["isAdmin"]);
 		header("Location: index.php");
-		$this->login();
 	}
 }

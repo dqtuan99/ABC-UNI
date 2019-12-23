@@ -1,12 +1,13 @@
 <?php
 	include("header.php");
-
-	if ($_SESSION["isAdmin"]) {
-		header("Location: admin.php?location=home");
-	}
-	else {
-		header("Location: student.php");
-	}
+  if (isset($_SESSION["username"])) {
+    if ($_SESSION["isAdmin"] == 1) {
+  		header("Location: admin.php?location=home");
+  	}
+  	else {
+  		header("Location: student.php");
+  	}
+  }
 ?>
 
 <!DOCTYPE html>

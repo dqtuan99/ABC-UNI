@@ -26,7 +26,7 @@ class Account {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
       select user_id, username, fullname, isAdmin
-      from user;
+      from user
       where username like ?;
     ", array($username));
 

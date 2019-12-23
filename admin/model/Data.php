@@ -58,6 +58,21 @@ class Data {
     return $count;
   }
 
+  public function getStudentByCourse($hocphan_id) {
+    $db = new PDOData();
+    $data = $db->doPreparedQuery("
+    select skh.*, u.username, u.fullname, h.ten_mon_hoc
+    from sv_kythi_hocphan skh
+    inner join user u
+    on skh.sv_id = u.user_id
+    inner join hocphan h
+    on skh.hocphan_id = h.hocphan_id
+    where skh.hocphan_id = ?;
+    ", array($hocphan_id));
+
+    return $data;
+  }
+
   public function getStudentByExam($cathi, $ngaythi, $room_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
@@ -134,6 +149,16 @@ class Data {
     return $count;
   }
 
+  public function getCourseName($hocphan_id) {
+    $db = new PDOData();
+    $data = $db->doPreparedQuery("
+      select *
+      from hocphan
+      where hocphan_id = ?
+    ", array($hocphan_id));
+
+    return $data;
+  }
   // ================================================================================================================
 
 

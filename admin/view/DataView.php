@@ -347,4 +347,17 @@ class DataView {
 
   }
 
+  public function studentByCourseView() {
+    $html ="";
+
+    foreach($this->data as $std){
+      $html .= $std["sv_id"] . ' | ';
+      $html .= $std["username"] . ' | ';
+      $html .= $std["fullname"] . ' | ';
+      $html .= $std["banned"] . '<br />';
+    }
+
+    return $html;
+  }
+
 }

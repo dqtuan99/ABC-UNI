@@ -70,6 +70,10 @@ class DataManager {
     $model = new \admin\model\Data();
     $data = $model->getStudentByCourse($_GET["hocphan_id"]);
     $semester_name = $model->getCourseName($_GET["hocphan_id"])[0]["ten_mon_hoc"];
+    echo $semester_name . '<br />';
+
+    $view = new \admin\view\DataView($data);
+    echo $view->studentByCourseView();
   }
   // ================================================================================================================
 
