@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Dec 23, 2019 at 10:25 AM
+-- Generation Time: Dec 23, 2019 at 03:57 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -144,10 +144,9 @@ INSERT INTO `sv_cathi` (`sv_id`, `cathi_id`) VALUES
 (6, 9),
 (7, 4),
 (7, 9),
-(8, 3),
+(8, 2),
 (8, 5),
 (8, 8),
-(8, 11),
 (9, 5),
 (9, 10),
 (10, 5),
@@ -307,7 +306,7 @@ ALTER TABLE `hocphan`
 -- AUTO_INCREMENT for table `kythi`
 --
 ALTER TABLE `kythi`
-  MODIFY `kythi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `kythi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -319,7 +318,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- Constraints for dumped tables
