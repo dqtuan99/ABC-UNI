@@ -41,13 +41,14 @@ class Student{
   public function getAvailableExam($sv_id) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
-      select skh.*, c.cathi_id, c.ngaythi, c.cathi, r.room_name, r.room_id, r.max_slot
+      select skh.*, c.cathi_id, c.ngaythi, c.cathi, r.room_name, r.room_id, r.max_slot, h.ten_mon_hoc
       from sv_kythi_hocphan skh
       inner join sv_cathi sc on skh.sv_id = sc.sv_id
       inner join cathi c on sc.cathi_id = c.cathi_id
                             and skh.hocphan_id = c.hocphan_id
                             and skh.kythi_id = c.kythi_id
       inner join room r on c.room_id = r.room_id
+      inner join hocphan h on c.hocphan_id = h.hocphan_id
       where skh.sv_id = ?
             and skh.kythi_id = (select kythi_id from kythi order by kythi_id desc limit 1)
             and skh.banned = 0;

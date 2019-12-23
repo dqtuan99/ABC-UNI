@@ -3,11 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Dec 22, 2019 at 08:59 PM
+-- Generation Time: Dec 23, 2019 at 10:25 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
-
-use abcuni_db;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -97,10 +95,7 @@ CREATE TABLE `kythi` (
 INSERT INTO `kythi` (`kythi_id`, `ten_ky_thi`) VALUES
 (1, '2018-2019/Ky 1'),
 (2, '2018-2019/Ky 2'),
-(3, '2019-2020/Ky 1'),
-(4, 'Ky thi test'),
-(5, '3'),
-(6, '3');
+(3, '2019-2020/Ky 1');
 
 -- --------------------------------------------------------
 
@@ -130,7 +125,6 @@ INSERT INTO `room` (`room_id`, `room_name`, `max_slot`) VALUES
 --
 
 CREATE TABLE `sv_cathi` (
-  `id` int(11) NOT NULL,
   `sv_id` int(11) NOT NULL,
   `cathi_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -139,24 +133,37 @@ CREATE TABLE `sv_cathi` (
 -- Dumping data for table `sv_cathi`
 --
 
-INSERT INTO `sv_cathi` (`id`, `sv_id`, `cathi_id`) VALUES
-(8, 2, 8),
-(9, 4, 8),
-(10, 5, 8),
-(11, 6, 9),
-(12, 7, 9),
-(13, 8, 8),
-(14, 9, 10),
-(15, 2, 2),
-(16, 4, 2),
-(17, 5, 3),
-(18, 6, 2),
-(19, 7, 4),
-(20, 8, 3),
-(21, 9, 5),
-(22, 10, 5),
-(23, 11, 4),
-(24, 8, 11);
+INSERT INTO `sv_cathi` (`sv_id`, `cathi_id`) VALUES
+(2, 2),
+(2, 8),
+(4, 2),
+(4, 8),
+(5, 3),
+(5, 8),
+(6, 2),
+(6, 9),
+(7, 4),
+(7, 9),
+(8, 3),
+(8, 5),
+(8, 8),
+(8, 11),
+(9, 5),
+(9, 10),
+(10, 5),
+(11, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sv_hocphan`
+--
+
+CREATE TABLE `sv_hocphan` (
+  `id` int(11) NOT NULL,
+  `sv_id` int(11) DEFAULT NULL,
+  `hocphan_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -165,7 +172,6 @@ INSERT INTO `sv_cathi` (`id`, `sv_id`, `cathi_id`) VALUES
 --
 
 CREATE TABLE `sv_kythi_hocphan` (
-  `id` int(11) NOT NULL,
   `sv_id` int(11) NOT NULL,
   `kythi_id` int(11) NOT NULL,
   `hocphan_id` int(11) NOT NULL,
@@ -176,13 +182,18 @@ CREATE TABLE `sv_kythi_hocphan` (
 -- Dumping data for table `sv_kythi_hocphan`
 --
 
-INSERT INTO `sv_kythi_hocphan` (`id`, `sv_id`, `kythi_id`, `hocphan_id`, `banned`) VALUES
-(1, 2, 3, 7, 0),
-(8, 4, 3, 7, 0),
-(9, 5, 3, 7, 0),
-(10, 6, 3, 7, 0),
-(11, 7, 3, 7, 0),
-(12, 8, 3, 7, 0);
+INSERT INTO `sv_kythi_hocphan` (`sv_id`, `kythi_id`, `hocphan_id`, `banned`) VALUES
+(2, 3, 7, 0),
+(2, 3, 9, 0),
+(4, 3, 7, 0),
+(4, 3, 9, 0),
+(5, 3, 7, 0),
+(5, 3, 9, 0),
+(6, 3, 7, 0),
+(7, 3, 7, 0),
+(7, 3, 9, 0),
+(8, 3, 7, 0),
+(8, 3, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -205,6 +216,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `username`, `password`, `fullname`, `isAdmin`) VALUES
 (1, 'dqtuan99', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Do Quang Tuan', 1),
 (2, 'bathanh123456', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Nguyen Ba Thanh3', 0),
+(3, 'dungdang112233', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Dang Anh Dung', 0),
 (4, 'testuser3', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Test Object 3', 0),
 (5, 'testuser4', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Test Object 4', 0),
 (6, 'testuser5', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Test Object 5', 0),
@@ -252,18 +264,22 @@ ALTER TABLE `room`
 -- Indexes for table `sv_cathi`
 --
 ALTER TABLE `sv_cathi`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `cathi_fk2` (`cathi_id`),
-  ADD KEY `sv_fk2` (`sv_id`);
+  ADD PRIMARY KEY (`sv_id`,`cathi_id`),
+  ADD KEY `cathi_fk2` (`cathi_id`);
+
+--
+-- Indexes for table `sv_hocphan`
+--
+ALTER TABLE `sv_hocphan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sv_kythi_hocphan`
 --
 ALTER TABLE `sv_kythi_hocphan`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`sv_id`,`kythi_id`,`hocphan_id`),
   ADD KEY `hocphan_fk` (`hocphan_id`),
-  ADD KEY `kythi_fk` (`kythi_id`),
-  ADD KEY `sv_fk` (`sv_id`);
+  ADD KEY `kythi_fk` (`kythi_id`);
 
 --
 -- Indexes for table `user`
@@ -298,18 +314,6 @@ ALTER TABLE `kythi`
 --
 ALTER TABLE `room`
   MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `sv_cathi`
---
-ALTER TABLE `sv_cathi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `sv_kythi_hocphan`
---
-ALTER TABLE `sv_kythi_hocphan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`

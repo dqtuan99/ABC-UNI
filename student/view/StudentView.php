@@ -61,18 +61,24 @@ class StudentView {
     <div id="table-scroll">
     <table>
     <tr>
+    <th>Mã Môn Học</th>
     <th>Tên Môn Học</th>
     <th>Ngày thi</th>
     <th>Ca thi</th>
     <th>Phòng thi</th>
+    <th>Số lượng</th>
+    <th></th>
     </tr>';
     foreach ($this->data as $row){
+      $slot = $row["current_slot"] . '/' . $row["max_slot"];
       $html .= '
       <tr>
+      <td>'.$row["hocphan_id"].'</td>
       <td>'.$row["ten_mon_hoc"].'</td>
       <td>'.$row["ngaythi"].'</td>
       <td>'.$row["cathi"].'</td>
       <td>'.$row["room_name"].'</td>
+      <td>'.$slot.'</td>
       </tr>
       ';
     }
