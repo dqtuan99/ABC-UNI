@@ -4,10 +4,10 @@ use \PDO;
 
 class PDOData {
   private $db = null; //Doi tuong PDO
-  private $servername = "localhost";
+  private $servername = "localhost:3307";
   private $database = "abcuni_db";
   private $username = "root";
-  private $password = "";
+  private $password = "quangtuan99";
 
   /**
   * Ham tao
