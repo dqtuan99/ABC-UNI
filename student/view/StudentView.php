@@ -79,6 +79,7 @@ class StudentView {
       <td>'.$row["cathi"].'</td>
       <td>'.$row["room_name"].'</td>
       <td>'.$slot.'</td>
+      <td id="btnevd"><button id = "button-add"><i class="fas fa-plus-circle"></i></td>
       </tr>
       ';
     }
@@ -89,6 +90,10 @@ class StudentView {
     </div>';
 
     return $html;
+  }
+
+  public function currentExamView() {
+    
   }
 
 }

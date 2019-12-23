@@ -36,7 +36,8 @@ class StudentControl {
   }
 
   public function showCurrentExam() {
-
+    $model = new \student\model\Student();
+    $data = $model->getAvailableExam($_SESSION["user_id"]);
   }
 }
 
