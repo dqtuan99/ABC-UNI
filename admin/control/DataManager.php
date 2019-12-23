@@ -1,9 +1,11 @@
 <?php
 
 namespace admin\control;
+use core\util\Util;
 
 require_once("admin/model/Data.php");
 require_once("admin/view/DataView.php");
+require_once("core/util/Util.php");
 
 class DataManager {
   public function __contruct() {
@@ -17,16 +19,54 @@ class DataManager {
     $model = new \admin\model\Data();
 
     if (isset($_POST["std_added"])){
-      $count = $model->addStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
-      header("Location: http://localhost:8080/ABC-UNI/admin/student");
+      $user_id = Util::clean($_POST["user_id"], 20);
+      $username = Util::clean($_POST["username"], 100);
+      $password = Util::clean($_POST["password"], 100);
+      $fullname = Util::clean($_POST["fullname"], 100);
+      $count = $model->addStudent($user_id, $username, $password, $fullname);
+
+      if ($count == 0){
+        $message = "Them sinh vien khong thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+      else {
+        $message = "Them sinh vien thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+
+      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/student");
     }
     if (isset($_POST["std_modified"])){
-      $count = $model->modifyStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
-      header("Location: http://localhost:8080/ABC-UNI/admin/student");
+      $user_id = Util::clean($_POST["user_id"], 20);
+      $username = Util::clean($_POST["username"], 100);
+      $password = Util::clean($_POST["password"], 100);
+      $fullname = Util::clean($_POST["fullname"], 100);
+      $count = $model->modifyStudent($user_id, $username, $password, $fullname);
+
+      if ($count == 0){
+        $message = "Sua sinh vien khong thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+      else {
+        $message = "Sua sinh vien thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+
+      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/student");
     }
     if (isset($_GET["std_deleted"])){
       $count = $model->deleteStudent($_GET["user_id"]);
-      header("Location: http://localhost:8080/ABC-UNI/admin/student");
+
+      if ($count == 0){
+        $message = "Xoa sinh vien khong thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+      else {
+        $message = "Xoa sinh vien thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+
+      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/student");
     }
 
     $data = $model->getStudentList();
@@ -48,12 +88,38 @@ class DataManager {
     }
     else {
       if (isset($_POST["course_added"])){
-        $count = $model->addCourse($_POST["course_id"], $_POST["course_name"], $_POST["teacher_id"]);
-        header("Location: http://localhost:8080/ABC-UNI/admin/monhoc");
+        $course_id = Util::clean($_POST["course_id"], 20);
+        $course_name = Util::clean($_POST["course_name"], 100);
+        $teacher_id = Util::clean($_POST["teacher_id"], 20);
+        $count = $model->addCourse($course_id, $course_name, $teacher_id);
+
+        if ($count == 0){
+          $message = "Them mon hoc khong thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+        else {
+          $message = "Them mon hoc thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+
+        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/monhoc");
       }
       if (isset($_POST["course_modified"])){
-        $count = $model->modifyCourse($_POST["course_id"], $_POST["course_name"], $_POST["teacher_id"]);
-        header("Location: http://localhost:8080/ABC-UNI/admin/monhoc");
+        $course_id = Util::clean($_POST["course_id"], 20);
+        $course_name = Util::clean($_POST["course_name"], 100);
+        $teacher_id = Util::clean($_POST["teacher_id"], 20);
+        $count = $model->modifyCourse($course_id, $course_name, $teacher_id);
+
+        if ($count == 0){
+          $message = "Sua mon hoc khong thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+        else {
+          $message = "Sua mon hoc thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+
+        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/monhoc");
       }
       if (isset($_GET["course_deleted"])){
         $count = $model->deleteCourse($_GET["course_id"]);
@@ -84,12 +150,38 @@ class DataManager {
     $model = new \admin\model\Data();
 
     if (isset($_POST["room_added"])){
-      $count = $model->addRoom($_POST["room_id"], $_POST["room_name"], $_POST["max_slot"]);
-      header("Location: http://localhost:8080/ABC-UNI/admin/phongmay");
+      $room_id = Util::clean($_POST["room_id"], 20);
+      $room_name = Util::clean($_POST["room_name"], 100);
+      $max_slot = Util::clean($_POST["max_slot"], 20);
+      $count = $model->addRoom($room_id, $room_name, $max_slot);
+
+      if ($count == 0){
+        $message = "Them phong may khong thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+      else {
+        $message = "Them phong may thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+
+      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/phongmay");
     }
     if (isset($_POST["room_modified"])){
-      $count = $model->modifyRoom($_POST["room_id"], $_POST["room_name"], $_POST["max_slot"]);
-      header("Location: http://localhost:8080/ABC-UNI/admin/phongmay");
+      $room_id = Util::clean($_POST["room_id"], 20);
+      $room_name = Util::clean($_POST["room_name"], 100);
+      $max_slot = Util::clean($_POST["max_slot"], 20);
+      $count = $model->modifyRoom($room_id, $room_name, $max_slot);
+
+      if ($count == 0){
+        $message = "Sua phong may khong thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+      else {
+        $message = "Sua phong may thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+
+      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/phongmay");
     }
     if (isset($_GET["room_deleted"])){
       $count = $model->deleteRoom($_GET["room_id"]);
@@ -115,12 +207,36 @@ class DataManager {
     }
     else {
       if (isset($_POST["semester_added"])){
-        $count = $model->addSemester($_POST["semester_id"], $_POST["semester_name"]);
-        header("Location: http://localhost:8080/ABC-UNI/admin/kythi");
+        $semester_id = Util::clean($_POST["semester_id"], 20);
+        $semester_name = Util::clean($_POST["semester_name"], 100);
+        $count = $model->addSemester($semester_id, $semester_name);
+
+        if ($count == 0){
+          $message = "Them ky thi khong thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+        else {
+          $message = "Them ky thi thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+
+        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi");
       }
       if (isset($_POST["semester_modified"])){
-        $count = $model->modifySemester($_POST["semester_id"], $_POST["semester_name"]);
-        header("Location: http://localhost:8080/ABC-UNI/admin/kythi");
+        $semester_id = Util::clean($_POST["semester_id"], 20);
+        $semester_name = Util::clean($_POST["semester_name"], 100);
+        $count = $model->modifySemester($semester_id, $semester_name);
+
+        if ($count == 0){
+          $message = "Them ky thi khong thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+        else {
+          $message = "Them ky thi thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+
+        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi");
       }
       if (isset($_GET["semester_deleted"])){
         $count = $model->deleteSemester($_GET["semester_id"]);
@@ -145,18 +261,63 @@ class DataManager {
     echo '<h2 class="text-center">'.$semester_name.'</h2>' . '<br />';
 
     if (isset($_POST["exam_added"])){
-      echo "Exam added";
-      $count = $model->addExam($_POST["exam_id"], $_POST["room_id"], $_POST["course_id"],
-                               $_GET["kythi_id"], $_POST["ngaythi"],
-                               $_POST["cathi"]);
-      header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+      $exam_id = Util::clean($_POST["exam_id"], 20);
+      $room_id = Util::clean($_POST["room_id"], 20);
+      $course_id = Util::clean($_POST["course_id"], 20);
+      $ngaythi = Util::clean($_POST["ngaythi"], 20);
+      $cathi = Util::clean($_POST["cathi"], 20);
+
+      $isDate = TRUE;
+      $dateArr = explode("-", $ngaythi);
+      if (count($dateArr) != 3){
+        $isDate = FALSE;
+      }
+      else {
+        $day = $dateArr[2];
+        $month = $dateArr[1];
+        $year = $dateArr[0];
+        $isDate = checkdate($month, $day, $year);
+      }
+
+      if (!$isDate) {
+        $message = "Ngay thi khong dung format xin hay nhap lai.";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+      }
+      else {
+        $count = $model->addExam($exam_id, $room_id, $course_id, $_GET["kythi_id"], $ngaythi, $cathi);
+
+        if ($count == 0){
+          $message = "Them ca thi khong thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+        else {
+          $message = "Them ca thi thanh cong";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+
+        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+        // header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+      }      
     }
     if (isset($_POST["exam_modified"])){
-      echo "Exam added";
-      $count = $model->modifyExam($_POST["exam_id"], $_POST["room_id"], $_POST["course_id"],
-                                  $_GET["kythi_id"], $_POST["ngaythi"],
-                                  $_POST["cathi"]);
-      header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+      $exam_id = Util::clean($_POST["exam_id"], 20);
+      $room_id = Util::clean($_POST["room_id"], 20);
+      $course_id = Util::clean($_POST["course_id"], 20);
+      $ngaythi = Util::clean($_POST["ngaythi"], 20);
+      $cathi = Util::clean($_POST["cathi"], 20);
+      $count = $model->modifyExam($exam_id, $room_id, $course_id, $_GET["kythi_id"], $ngaythi, $cathi);
+
+      if ($count == 0){
+        $message = "Sua ca thi khong thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+      else {
+        $message = "Sua ca thi thanh cong";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+
+      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
     }
     if (isset($_GET["exam_deleted"])){
       $count = $model->deleteExam($_GET["exam_id"]);

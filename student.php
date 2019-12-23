@@ -83,9 +83,14 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
+                          <div class="dropdown ">
                             <li class="nav-item">
-                                <a class="nav-link" href="./index.php?logout">Chào mừng: <?php echo $_SESSION["fullname"].' - '.$_SESSION["user_id"]; ?></a>
+                              <a class="nav-link" href=""><span class="span-btn">Chào mừng: <?php echo $_SESSION["fullname"]; ?></span></a>
                             </li>
+                            <div class="dropdown-content" aria-labelledby="dropdownMenuButton">
+                              <a class="nav-link" href="./index.php?logout">Log out</a>
+                            </div>
+                          </div>
                         </ul>
                     </div>
                 </div>
