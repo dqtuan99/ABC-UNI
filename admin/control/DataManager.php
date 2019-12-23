@@ -20,10 +20,10 @@ class DataManager {
       $count = $model->addStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
       header("Location: admin.php?location=student");
     }
-    // if (isset($_POST["std_modified"])){
-    //   $count = $model->modifyStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
-    //   header("Location: admin.php?location=student");
-    // }
+    if (isset($_POST["std_modified"])){
+      $count = $model->modifyStudent($_POST["user_id"], $_POST["username"], $_POST["password"], $_POST["fullname"]);
+      header("Location: admin.php?location=student");
+    }
     if (isset($_GET["std_deleted"])){
       $count = $model->deleteStudent($_GET["user_id"]);
       header("Location: admin.php?location=student");
@@ -55,8 +55,8 @@ class DataManager {
         $count = $model->modifyCourse($_POST["course_id"], $_POST["course_name"], $_POST["teacher_id"]);
         header("Location: admin.php?location=monhoc");
       }
-      if (isset($_POST["course_deleted"])){
-        $count = $model->deleteCourse($_POST["course_id"]);
+      if (isset($_GET["course_deleted"])){
+        $count = $model->deleteCourse($_GET["course_id"]);
         header("Location: admin.php?location=monhoc");
       }
 
@@ -91,8 +91,8 @@ class DataManager {
       $count = $model->modifyRoom($_POST["room_id"], $_POST["room_name"], $_POST["max_slot"]);
       header("Location: admin.php?location=phongmay");
     }
-    if (isset($_POST["room_deleted"])){
-      $count = $model->deleteRoom($_POST["room_id"]);
+    if (isset($_GET["room_deleted"])){
+      $count = $model->deleteRoom($_GET["room_id"]);
       header("Location: admin.php?location=phongmay");
     }
 
@@ -122,8 +122,8 @@ class DataManager {
         $count = $model->modifySemester($_POST["semester_id"], $_POST["semester_name"]);
         header("Location: admin.php?location=kythi");
       }
-      if (isset($_POST["semester_deleted"])){
-        $count = $model->deleteSemester($_POST["semester_id"]);
+      if (isset($_GET["semester_deleted"])){
+        $count = $model->deleteSemester($_GET["semester_id"]);
         header("Location: admin.php?location=kythi");
       }
 
@@ -142,7 +142,7 @@ class DataManager {
     $model = new \admin\model\Data();
     $data = $model->getExamListBySemester($_GET["kythi_id"]);
     $semester_name = $model->getSemesterName($_GET["kythi_id"])[0]["ten_ky_thi"];
-    echo $semester_name . '<br />';
+    echo '<h2 class="text-center">'.$semester_name.'</h2>' . '<br />';
 
     if (isset($_POST["exam_added"])){
       echo "Exam added";
@@ -158,8 +158,8 @@ class DataManager {
                                   $_POST["cathi"]);
       header("Location: admin.php?location=kythi&&kythi_id=".$_GET["kythi_id"]."");
     }
-    if (isset($_POST["exam_deleted"])){
-      $count = $model->deleteExam($_POST["exam_id"]);
+    if (isset($_GET["exam_deleted"])){
+      $count = $model->deleteExam($_GET["exam_id"]);
       header("Location: admin.php?location=kythi&&kythi_id=".$_GET["kythi_id"]."");
     }
 

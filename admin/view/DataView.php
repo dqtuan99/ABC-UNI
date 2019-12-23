@@ -36,11 +36,6 @@ class DataView {
   public function studentListView() {
     $html = "";
 
-    $html .= '
-    <a href="'.$this->addPath.'">Them SV</a>
-    <a href="'.$this->modifyPath.'">Sua SV</a>
-    ';
-
     if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
       $html .= '
         <form method="post" action="">
@@ -95,7 +90,10 @@ class DataView {
       <th><h5>Mã Sinh viên</h5></th>
       <th><h5>Tên tài khoản</h5></th>
       <th><h5>Tên học sinh</h5></th>
-      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
+      <th>
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
+      <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
+      </th>
       </tr>';
       foreach ($this->data as $row){
         $html .= '
@@ -122,11 +120,6 @@ class DataView {
         var url = "./admin.php?location=student&&std_deleted=1&&user_id=" + msv;
         location.replace(url);
       }
-      function modify(obj){
-        var msv = obj.parentElement.parentElement.children[0].innerHTML;
-        var url = "./admin.php?location=student&&std_modified=1&&user_id=" + msv;
-        location.replace(url);
-      }
       </script>
       ';
     }
@@ -136,12 +129,6 @@ class DataView {
 
   public function courseListView() {
     $html = "";
-
-    $html .= '
-    <a href="'.$this->addPath.'">Them mon hoc</a>
-    <a href="'.$this->modifyPath.'">Sua mon hoc</a>
-    <a href="'.$this->deletePath.'">Xoa mon hoc</a>
-    ';
 
     if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
       $html .= '
@@ -193,15 +180,6 @@ class DataView {
       $html .= "Khong ton tai mon hoc nao.";
     }
     else {
-      // foreach ($this->data as $row){
-        // $new_path = $this->current_path . '&&hocphan_id=' . $row["hocphan_id"];
-        // $html .= '
-        // <a href="'.$new_path.'"><p>'.$row["hocphan_id"].'</p></a>
-        // <p>'.$row["ten_mon_hoc"].'</p>
-        // <p>'.$row["fullname"].'</p>
-        // <br />
-        // ';
-      // }
       $html .= '
       <div>
       <div id="table-wrapper">
@@ -211,7 +189,10 @@ class DataView {
       <th><h5>Mã môn học</h5></th>
       <th><h5>Tên môn học</h5></th>
       <th><h5>Tên giảng viên</h5></th>
-      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
+      <th>
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
+      <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
+      </th>
       </tr>';
       foreach ($this->data as $row){
         $html .= '
@@ -219,7 +200,7 @@ class DataView {
         <td>'.$row["hocphan_id"].'</td>
         <td>'.$row["ten_mon_hoc"].'</td>
         <td>'.$row["fullname"].'</td>
-        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" onclick="remove(this)"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }
@@ -228,6 +209,16 @@ class DataView {
       </div>
       </div>
       </div>';
+
+      $html .= '
+      <script>
+      function remove(obj){
+        var id = obj.parentElement.parentElement.children[0].innerHTML;
+        var url = "./admin.php?location=monhoc&&course_deleted=1&&course_id=" + id;
+        location.replace(url);
+      }
+      </script>
+      ';
     }
 
     return $html;
@@ -235,12 +226,6 @@ class DataView {
 
   public function roomListView() {
     $html = "";
-
-    $html .= '
-    <a href="'.$this->addPath.'">Them phong may</a>
-    <a href="'.$this->modifyPath.'">Sua phong may</a>
-    <a href="'.$this->deletePath.'">Xoa phong may</a>
-    ';
 
     if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
       $html .= '
@@ -301,7 +286,10 @@ class DataView {
       <th><h5>Mã phòng máy</h5></th>
       <th><h5>Tên phòng máy</h5></th>
       <th><h5>Số máy tối đa</h5></th>
-      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
+      <th>
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
+      <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
+      </th>
       </tr>';
       foreach ($this->data as $row){
         $html .= '
@@ -309,7 +297,7 @@ class DataView {
         <td>'.$row["room_id"].'</td>
         <td>'.$row["room_name"].'</td>
         <td>'.$row["max_slot"].'</td>
-        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" style="margin-left:40px;"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" style="margin-left:40px;" onclick="remove(this)"><i class="fas fa-trash"></i></button></td>
         ';
       }
       $html.='
@@ -318,6 +306,15 @@ class DataView {
       </div>
       </div>';
 
+      $html .= '
+      <script>
+      function remove(obj){
+        var id = obj.parentElement.parentElement.children[0].innerHTML;
+        var url = "./admin.php?location=phongmay&&room_deleted=1&&room_id=" + id;
+        location.replace(url);
+      }
+      </script>
+      ';
     }
 
     return $html;
@@ -325,12 +322,6 @@ class DataView {
 
   public function semesterListView() {
     $html = "";
-
-    $html .= '
-    <a href="'.$this->addPath.'">Them ky thi</a>
-    <a href="'.$this->modifyPath.'">Sua ky thi</a>
-    <a href="'.$this->deletePath.'">Xoa ky thi</a>
-    ';
 
     if (isset($_GET["modify"]) && $_GET["modify"] == "add"){
       $html .= '
@@ -384,15 +375,18 @@ class DataView {
       <tr>
       <th><h5>Mã kỳ thi</h5></th>
       <th><h5>Tên tài khoản</h5></th>
-      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
+      <th>
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
+      <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
+      </th>
       </tr>';
       foreach ($this->data as $row){
-		$new_path = $this->current_path . '/id=' . $row["kythi_id"];
+        $new_path = $this->current_path . '/id=' . $row["kythi_id"];
         $html .= '
         <tr>
         <td ><a href="'.$new_path.'">'.$row["kythi_id"].'</a></td>
         <td>'.$row["ten_ky_thi"].'</td>
-        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" style="margin-left:40px;"><i class="fas fa-trash"></i></button></td>
+        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" style="margin-left:40px;" onclick="remove(this)"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }
@@ -402,6 +396,15 @@ class DataView {
       </div>
       </div>';
 
+      $html .= '
+      <script>
+      function remove(obj){
+        var id = obj.parentElement.parentElement.children[0].innerHTML;
+        var url = "./admin.php?location=kythi&&semester_deleted=1&&semester_id=" + id;
+        location.replace(url);
+      }
+      </script>
+      ';
     }
 
     return $html;
@@ -412,9 +415,6 @@ class DataView {
     $html = "";
 
     $html .= '
-    <a href="'.$this->addPath.'">Them ca thi</a>
-    <a href="'.$this->modifyPath.'">Sua ca thi</a>
-    <a href="'.$this->deletePath.'">Xoa ca thi</a>
     <a href="'.$getAllPath.'">Get all</a>
     ';
 
@@ -480,7 +480,7 @@ class DataView {
       $html .= "<br />Ky thi nay khong ton tai ca thi nao ca.";
     }
     else {
-		$html .= '
+      $html .= '
       <div>
       <div id="table-wrapper">
       <div id="table-scroll1">
@@ -488,22 +488,25 @@ class DataView {
       <tr>
       <th><h5>Mã ca thi</h5></th>
       <th><h5>Mã học phần</h5></th>
-	  <th><h5>Tên môn học</h5></th>
-	  <th><h5>Phòng</h5></th>
-	  <th><h5>Ngày thi</h5></th>
-	  <th><h5>Ca thi</h5></th>
-      <th><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></th>
+      <th><h5>Tên môn học</h5></th>
+      <th><h5>Phòng</h5></th>
+      <th><h5>Ngày thi</h5></th>
+      <th><h5>Ca thi</h5></th>
+      <th>
+      <a href="'.$this->addPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-plus"></i></button></a>
+      <a href="'.$this->modifyPath.'"><button class="btn btn-success" id="button-edit"><i class="fas fa-edit"></i></button></a>
+      </th>
       </tr>';
       foreach ($this->data as $row){
         $html .= '
         <tr>
         <td>'.$row["cathi_id"].'</td>
         <td>'.$row["hocphan_id"].'</td>
-		<td>'.$row["ten_mon_hoc"].'</td>
-		<td>'.$row["room_name"].'</td>
-		<td>'.$row["ngaythi"].'</td>
-		<td>'.$row["cathi"].'</td>
-        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;"><i class="fas fa-trash"></i></button></td>
+        <td>'.$row["ten_mon_hoc"].'</td>
+        <td>'.$row["room_name"].'</td>
+        <td>'.$row["ngaythi"].'</td>
+        <td>'.$row["cathi"].'</td>
+        <td id="btnevd"><button class="btn btn-success" id="button-delete" style="margin-left:40px;" onclick="remove(this)"><i class="fas fa-trash"></i></button></td>
         </tr>
         ';
       }
@@ -512,6 +515,16 @@ class DataView {
       </div>
       </div>
       </div>';
+
+      $html .= '
+      <script>
+      function remove(obj){
+        var id = obj.parentElement.parentElement.children[0].innerHTML;
+        var url = "./admin.php?location=kythi&&kythi_id='.$_GET["kythi_id"].'&&exam_deleted=1&&exam_id=" + id;
+        location.replace(url);
+      }
+      </script>
+      ';
 
     }
 
