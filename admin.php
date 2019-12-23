@@ -18,6 +18,7 @@
 <html>
 
 <head>
+  <base href="http://localhost:8080/ABC-UNI/"/>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,27 +43,27 @@
     <!-- Sidebar Holder -->
     <nav id="sidebar">
       <div class="sidebar-header">
-        <a href="./admin.php?location=home"><h3><i class="fas fa-school"></i> ABC UNI</h3></a>
+        <a href="admin-home"><h3><i class="fas fa-school"></i> ABC UNI</h3></a>
       </div>
 
       <ul class="list-unstyled components">
         <li>
-          <a href="./admin.php?location=student"><div style="display:inline-block; width: 30px;">
+          <a href="admin/student"><div style="display:inline-block; width: 30px;">
             <i class="fas fa-user" style="margin-right:4px;"></i>
           </div> Sinh viên</a>
         </li>
         <li>
-          <a href="./admin.php?location=monhoc"><div style="display:inline-block; width: 30px;">
+          <a href="admin/monhoc"><div style="display:inline-block; width: 30px;">
             <i class="fas fa-book-open " style="margin-right:4px;"></i>
           </div> Môn học</a>
         </li>
         <li>
-          <a href="./admin.php?location=kythi"><div style="display:inline-block; width: 30px;">
+          <a href="admin/kythi"><div style="display:inline-block; width: 30px;">
             <i class="fas fa-eye-dropper" style="margin-right:4px;"></i>
           </div> Kỳ thi</a>
         </li>
         <li>
-          <a href="./admin.php?location=excel"><div style="display:inline-block; width: 30px;">
+          <a href="admin/excel"><div style="display:inline-block; width: 30px;">
             <i class="fas fa-file-excel" style="margin-right:4px;"></i>
           </div> Import Excel</a>
         </li>

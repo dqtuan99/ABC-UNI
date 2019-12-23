@@ -2,10 +2,10 @@
 	include("header.php");
   if (isset($_SESSION["username"])) {
     if ($_SESSION["isAdmin"] == 1) {
-  		header("Location: admin.php?location=home");
+  		header("Location: admin-home");
   	}
   	else {
-  		header("Location: student.php?location=home");
+  		header("Location: student-home");
   	}
   }
 ?>
@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<base href="http://localhost:8080/ABC-UNI/"/>
 	<title>ABCUNI SINGIN</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

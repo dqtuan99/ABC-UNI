@@ -13,23 +13,24 @@ class DataView {
     $this->data = $data;
     $this->current_path = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-    $arr = explode('&&', $this->current_path);
+    $arr = explode('/', $this->current_path);
     $path = "";
+    $modifyArr = array("add", "modify", "delete","getall");
     for ($i = 0; $i < count($arr); ++$i){
       if ($i == 0){
         $path .= $arr[$i];
       }
       else {
-        if (strpos($arr[$i], 'modify') === false) {
-          $path .= '&&' . $arr[$i];
+        if (!in_array($arr[$i], $modifyArr)){
+          $path .= '/' . $arr[$i];
         }
       }
     }
     $this->current_path = $path;
 
-    $this->addPath = $this->current_path . '&&modify=add';
-    $this->modifyPath = $this->current_path . '&&modify=modify';
-    $this->deletePath = $this->current_path . '&&modify=delete';
+    $this->addPath = $this->current_path . '/add';
+    $this->modifyPath = $this->current_path . '/modify';
+    $this->deletePath = $this->current_path . '/delete';
   }
 
   public function studentListView() {
@@ -297,7 +298,7 @@ class DataView {
       <th></th>
       </tr>';
       foreach ($this->data as $row){
-		$new_path = $this->current_path . '&&kythi_id=' . $row["kythi_id"];
+		$new_path = $this->current_path . '/id=' . $row["kythi_id"];
         $html .= '
         <tr>
         <td ><a href="'.$new_path.'">'.$row["kythi_id"].'</a></td>
@@ -318,7 +319,7 @@ class DataView {
   }
 
   public function examListView() {
-    $getAllPath = $this->current_path . '&&getAll=1';
+    $getAllPath = $this->current_path . '/getall';
     $html = "";
 
     $html .= '

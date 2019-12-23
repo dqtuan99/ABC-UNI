@@ -3,7 +3,7 @@
 
   if (isset($_SESSION["username"])) {
     if ($_SESSION["isAdmin"] == 1) {
-  		header("Location: admin.php?location=home");
+  		header("Location: admin-home");
   	}
   }
   else {
@@ -17,6 +17,7 @@
 <html>
 
 <head>
+    <base href="http://localhost:8080/ABC-UNI/"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,16 +42,16 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <a href='./student.php?location=home'><h3><i class="fas fa-school"></i> ABC UNI</h3></a>
+                <a href='./student-home'><h3><i class="fas fa-school"></i> ABC UNI</h3></a>
             </div>
 
             <ul class="list-unstyled components">
                 <li>
-                  <a href="./student.php?location=home"><i class="fas fa-home" style="margin-right:4px;"></i> Home</a>
+                  <a href="./student-home"><i class="fas fa-home" style="margin-right:4px;"></i> Home</a>
                   <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-skull-crossbones" style="margin-right:4px;"></i> Đăng ký môn thi</a>
                   <ul class="collapse list-unstyled" id="pageSubmenu">
                       <li>
-                          <a href="./student.php?location=dangky"><i class="fas fa-skull-crossbones" style="margin-right:4px;"></i> Đăng ký thi ngành 1</a>
+                          <a href="./student/dangky"><i class="fas fa-skull-crossbones" style="margin-right:4px;"></i> Đăng ký thi ngành 1</a>
                       </li>
                   </ul>
                 </li>
@@ -58,7 +59,7 @@
                     <a href="#phopageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-print" style="margin-right:4px;"></i> In đăng ký thi</a>
                     <ul class="collapse list-unstyled" id="phopageSubmenu">
                         <li>
-                            <a href="./student.php?location=indangky"><i class="fas fa-print" style="margin-right:4px;"></i> In đăng ký thi ngành 1</a>
+                            <a href="./student/indangky"><i class="fas fa-print" style="margin-right:4px;"></i> In đăng ký thi ngành 1</a>
                         </li>
                     </ul>
                 </li>
