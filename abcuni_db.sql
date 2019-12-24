@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Dec 23, 2019 at 06:01 PM
+-- Generation Time: Dec 24, 2019 at 01:47 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -108,7 +108,7 @@ CREATE TABLE `kythi` (
 INSERT INTO `kythi` (`kythi_id`, `ten_ky_thi`) VALUES
 (1, '2018-2019/Ky 1'),
 (2, '2018-2019/Ky 2'),
-(3, '2019-2020/Ky 1');
+(3, 'Ky 1  2019-2020');
 
 -- --------------------------------------------------------
 
@@ -147,10 +147,10 @@ CREATE TABLE `sv_cathi` (
 --
 
 INSERT INTO `sv_cathi` (`sv_id`, `cathi_id`) VALUES
-(2, 32),
-(2, 34),
-(2, 35),
-(2, 36),
+(2, 2),
+(2, 30),
+(2, 40),
+(2, 42),
 (4, 2),
 (4, 8),
 (5, 3),
@@ -169,18 +169,6 @@ INSERT INTO `sv_cathi` (`sv_id`, `cathi_id`) VALUES
 (9, 10),
 (10, 5),
 (11, 4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sv_hocphan`
---
-
-CREATE TABLE `sv_hocphan` (
-  `id` int(11) NOT NULL,
-  `sv_id` int(11) DEFAULT NULL,
-  `hocphan_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -272,7 +260,13 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `fullname`, `isAdmin`) VA
 (30, 'tuan9', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 9', 0),
 (31, 'tuan10', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 10', 0),
 (32, 'tuan11', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Do Quang Tuan 12', 0),
-(124, 'User_name', 'e7cf3ef4f17c3999a94f2c6f612e8a888e5b1026878e4e19398b23bd38ec221a', 'FullName', 0);
+(125, 'User_name', 'e7cf3ef4f17c3999a94f2c6f612e8a888e5b1026878e4e19398b23bd38ec221a', 'FullName', 0),
+(126, 'User_name', 'e7cf3ef4f17c3999a94f2c6f612e8a888e5b1026878e4e19398b23bd38ec221a', 'FullName', 0),
+(127, 'User_name', 'e7cf3ef4f17c3999a94f2c6f612e8a888e5b1026878e4e19398b23bd38ec221a', 'FullName', 0),
+(128, 'User_name', 'e7cf3ef4f17c3999a94f2c6f612e8a888e5b1026878e4e19398b23bd38ec221a', 'FullName', 0),
+(130, 'User_name', 'e7cf3ef4f17c3999a94f2c6f612e8a888e5b1026878e4e19398b23bd38ec221a', 'FullName', 0),
+(1702, 'danganhdung1', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Dang Anh Dung2', 0),
+(17021, 'testuser159', '7f1c9f0f60dbd68fb2904966b5a9ed86bca578a0195617d6dc236a5a1c8e10f4', 'Test User 951', 0);
 
 --
 -- Indexes for dumped tables
@@ -314,12 +308,6 @@ ALTER TABLE `sv_cathi`
   ADD KEY `cathi_fk2` (`cathi_id`);
 
 --
--- Indexes for table `sv_hocphan`
---
-ALTER TABLE `sv_hocphan`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `sv_kythi_hocphan`
 --
 ALTER TABLE `sv_kythi_hocphan`
@@ -341,31 +329,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cathi`
 --
 ALTER TABLE `cathi`
-  MODIFY `cathi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `cathi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `hocphan`
 --
 ALTER TABLE `hocphan`
-  MODIFY `hocphan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `hocphan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `kythi`
 --
 ALTER TABLE `kythi`
-  MODIFY `kythi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kythi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17022;
 
 --
 -- Constraints for dumped tables
