@@ -27,14 +27,18 @@ class DataManager {
 
       if ($count == 0){
         $message = "Them sinh vien khong thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/student';
+        alert('$message');
+        </script>";
       }
       else {
         $message = "Them sinh vien thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/student';
+        alert('$message');
+        </script>";
       }
-
-      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/student");
     }
     if (isset($_POST["std_modified"])){
       $user_id = Util::clean($_POST["user_id"], 20);
@@ -45,11 +49,17 @@ class DataManager {
 
       if ($count == 0){
         $message = "Sua sinh vien khong thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/student';
+        alert('$message');
+        </script>";
       }
       else {
         $message = "Sua sinh vien thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/student';
+        alert('$message');
+        </script>";
       }
 
       header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/student");
@@ -57,16 +67,13 @@ class DataManager {
     if (isset($_GET["std_deleted"])){
       $count = $model->deleteStudent($_GET["user_id"]);
 
-      if ($count == 0){
-        $message = "Xoa sinh vien khong thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-      }
-      else {
+      if ($count != 0){
         $message = "Xoa sinh vien thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/student';
+        alert('$message');
+        </script>";
       }
-
-      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/student");
     }
 
     $data = $model->getStudentList();
@@ -96,14 +103,18 @@ class DataManager {
 
         if ($count == 0){
           $message = "Them mon hoc khong thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/monhoc';
+          alert('$message');
+          </script>";
         }
         else {
           $message = "Them mon hoc thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/monhoc';
+          alert('$message');
+          </script>";
         }
-
-        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/monhoc");
       }
       if (isset($_POST["course_modified"])){
         $course_id = Util::clean($_POST["course_id"], 20);
@@ -113,18 +124,26 @@ class DataManager {
 
         if ($count == 0){
           $message = "Sua mon hoc khong thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/monhoc';
+          alert('$message');
+          </script>";
         }
         else {
           $message = "Sua mon hoc thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/monhoc';
+          alert('$message');
+          </script>";
         }
-
-        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/monhoc");
       }
       if (isset($_GET["course_deleted"])){
         $count = $model->deleteCourse($_GET["course_id"]);
-        header("Location: http://localhost:8080/ABC-UNI/admin/monhoc");
+        $message = "Xoa mon hoc thanh cong";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/monhoc';
+        alert('$message');
+        </script>";
       }
 
       $data = $model->getCourseList();
@@ -159,14 +178,18 @@ class DataManager {
 
       if ($count == 0){
         $message = "Them phong may khong thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/phongmay';
+        alert('$message');
+        </script>";
       }
       else {
         $message = "Them phong may thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/phongmay';
+        alert('$message');
+        </script>";
       }
-
-      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/phongmay");
     }
     if (isset($_POST["room_modified"])){
       $room_id = Util::clean($_POST["room_id"], 20);
@@ -176,18 +199,26 @@ class DataManager {
 
       if ($count == 0){
         $message = "Sua phong may khong thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/phongmay';
+        alert('$message');
+        </script>";
       }
       else {
         $message = "Sua phong may thanh cong";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/phongmay';
+        alert('$message');
+        </script>";
       }
-
-      header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/phongmay");
     }
     if (isset($_GET["room_deleted"])){
       $count = $model->deleteRoom($_GET["room_id"]);
-      header("Location: http://localhost:8080/ABC-UNI/admin/phongmay");
+      $message = "Xoa phong may thanh cong";
+      echo "<script>
+      window.location.href='http://localhost:8080/ABC-UNI/admin/phongmay';
+      alert('$message');
+      </script>";
     }
 
     $data = $model->getRoomList();
@@ -217,14 +248,18 @@ class DataManager {
 
         if ($count == 0){
           $message = "Them ky thi khong thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/kythi';
+          alert('$message');
+          </script>";
         }
         else {
           $message = "Them ky thi thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/kythi';
+          alert('$message');
+          </script>";
         }
-
-        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi");
       }
       if (isset($_POST["semester_modified"])){
         $semester_id = Util::clean($_POST["semester_id"], 20);
@@ -232,19 +267,29 @@ class DataManager {
         $count = $model->modifySemester($semester_id, $semester_name);
 
         if ($count == 0){
-          $message = "Them ky thi khong thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          $message = "Sua ky thi khong thanh cong";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/kythi';
+          alert('$message');
+          </script>";
         }
         else {
-          $message = "Them ky thi thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          $message = "Sua ky thi thanh cong";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/kythi';
+          alert('$message');
+          </script>";
         }
 
         header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi");
       }
       if (isset($_GET["semester_deleted"])){
         $count = $model->deleteSemester($_GET["semester_id"]);
-        header("Location: http://localhost:8080/ABC-UNI/admin/kythi");
+        $message = "Xoa ky thi thanh cong";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/kythi';
+        alert('$message');
+        </script>";
       }
 
       $data = $model->getSemesterList();
@@ -289,23 +334,31 @@ class DataManager {
 
       // Nếu không phải ngày tháng, báo lỗi và tải lại trang
       if (!$isDate) {
-        $message = "Ngay thi khong dung format xin hay nhap lai.";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+        $message = "Ngay thi sai format xin hay nhap lai";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."';
+        alert('$message');
+        </script>";
       }
       else {
         $count = $model->addExam($exam_id, $room_id, $course_id, $_GET["kythi_id"], $ngaythi, $cathi);
 
         if ($count == 0){
           $message = "Them ca thi khong thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."';
+          alert('$message');
+          </script>";
         }
         else {
           $message = "Them ca thi thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."';
+          alert('$message');
+          </script>";
         }
 
-        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+        // header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
         // header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
       }
     }
@@ -331,20 +384,28 @@ class DataManager {
 
       // Nếu không phải ngày tháng, báo lỗi và tải lại trang
       if (!$isDate) {
-        $message = "Ngay thi khong dung format xin hay nhap lai.";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-        header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+        $message = "Ngay thi sai format xin hay nhap lai";
+        echo "<script>
+        window.location.href='http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."';
+        alert('$message');
+        </script>";
       }
       else {
         $count = $model->modifyExam($exam_id, $room_id, $course_id, $_GET["kythi_id"], $ngaythi, $cathi);
 
         if ($count == 0){
           $message = "Sua ca thi khong thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."';
+          alert('$message');
+          </script>";
         }
         else {
           $message = "Sua ca thi thanh cong";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script>
+          window.location.href='http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."';
+          alert('$message');
+          </script>";
         }
 
         header("refresh:1;url=http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
@@ -352,7 +413,11 @@ class DataManager {
     }
     if (isset($_GET["exam_deleted"])){
       $count = $model->deleteExam($_GET["exam_id"]);
-      header("Location: http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."");
+      $message = "Xoa ca thi thanh cong";
+      echo "<script>
+      window.location.href='http://localhost:8080/ABC-UNI/admin/kythi/id=".$_GET["kythi_id"]."';
+      alert('$message');
+      </script>";
     }
 
     // Nếu ấn nút get all, chuyển qua giao diện in danh sách thí sinh dự thi

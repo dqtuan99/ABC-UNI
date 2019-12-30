@@ -42,18 +42,18 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="std_added" value="1"/>
         User id:<br>
-        <input type="text" name="user_id" placeholder="User id" required>
+        <input type="text" class="form-control" style="width:15%;" name="user_id" placeholder="User id" required>
         <br>
         Username:<br>
-        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" class="form-control" style="width:15%;" name="username" placeholder="Username" required>
         <br>
         Password:<br>
         <input type="password" name="password">
         <br>
         Fullname:<br>
-        <input type="text" name="fullname" placeholder="Fullname" required>
+        <input type="text" class="form-control" style="width:15%;" name="fullname" placeholder="Fullname" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -62,18 +62,18 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="std_modified" value="1"/>
         User id:<br>
-        <input type="text" name="user_id" placeholder="User id" required>
+        <input type="text" class="form-control" style="width:15%;" name="user_id" placeholder="User id" required>
         <br>
         Username:<br>
-        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" class="form-control" style="width:15%;" name="username" placeholder="Username" required>
         <br>
         Password:<br>
         <input type="password" name="password">
         <br>
         Fullname:<br>
-        <input type="text" name="fullname" placeholder="Fullname" required>
+        <input type="text" class="form-control" style="width:15%;" name="fullname" placeholder="Fullname" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -139,15 +139,15 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="course_added" value="1"/>
         Course id:<br>
-        <input type="text" name="course_id" placeholder="Course id" required>
+        <input type="text" class="form-control" style="width:15%;" name="course_id" placeholder="Course id" required>
         <br>
         Ten mon hoc:<br>
-        <input type="text" name="course_name" placeholder="Ten mon hoc" required>
+        <input type="text" class="form-control" style="width:15%;" name="course_name" placeholder="Ten mon hoc" required>
         <br>
         Teacher id:<br>
-        <input type="text" name="teacher_id" placeholder="Teacher id" required>
+        <input type="text" class="form-control" style="width:15%;" name="teacher_id" placeholder="Teacher id" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -156,15 +156,15 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="course_modified" value="1"/>
         Course id:<br>
-        <input type="text" name="course_id" placeholder="Course id" required>
+        <input type="text" class="form-control" style="width:15%;" name="course_id" placeholder="Course id" required>
         <br>
         Ten mon hoc:<br>
-        <input type="text" name="course_name" placeholder="Ten mon hoc" required>
+        <input type="text" class="form-control" style="width:15%;" name="course_name" placeholder="Ten mon hoc" required>
         <br>
         Teacher id:<br>
-        <input type="text" name="teacher_id" placeholder="Teacher id" required>
+        <input type="text" class="form-control" style="width:15%;" name="teacher_id" placeholder="Teacher id" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -173,9 +173,9 @@ class DataView {
     //     <form method="post" action="">
     //     <input type="hidden" name="course_deleted" value="1"/>
     //     Course id:<br>
-    //     <input type="text" name="course_id" placeholder="Course id" required>
+    //     <input type="text" class="form-control" style="width:15%;" name="course_id" placeholder="Course id" required>
     //     <br>
-    //     <input type="submit" value="Submit">
+    //     <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
     //     </form>
     //   ';
     // }
@@ -239,15 +239,15 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="room_added" value="1"/>
         Room id:<br>
-        <input type="text" name="room_id" placeholder="Room id" required>
+        <input type="text" class="form-control" style="width:15%;" name="room_id" placeholder="Room id" required>
         <br>
         Room name:<br>
-        <input type="text" name="room_name" placeholder="Room name" required>
+        <input type="text" class="form-control" style="width:15%;" name="room_name" placeholder="Room name" required>
         <br>
         Max slot:<br>
-        <input type="text" name="max_slot" placeholder="Max slot" required>
+        <input type="text" class="form-control" style="width:15%;" name="max_slot" placeholder="Max slot" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -256,15 +256,15 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="room_modified" value="1"/>
         Room id:<br>
-        <input type="text" name="room_id" placeholder="Room id" required>
+        <input type="text" class="form-control" style="width:15%;" name="room_id" placeholder="Room id" required>
         <br>
         Room name:<br>
-        <input type="text" name="room_name" placeholder="Room name" required>
+        <input type="text" class="form-control" style="width:15%;" name="room_name" placeholder="Room name" required>
         <br>
         Max slot:<br>
-        <input type="text" name="max_slot" placeholder="Max slot" required>
+        <input type="text" class="form-control" style="width:15%;" name="max_slot" placeholder="Max slot" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -273,9 +273,9 @@ class DataView {
     //     <form method="post" action="">
     //     <input type="hidden" name="room_deleted" value="1"/>
     //     Room id:<br>
-    //     <input type="text" name="room_id" placeholder="Room id" required>
+    //     <input type="text" class="form-control" style="width:15%;" name="room_id" placeholder="Room id" required>
     //     <br>
-    //     <input type="submit" value="Submit">
+    //     <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
     //     </form>
     //   ';
     // }
@@ -338,12 +338,12 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="semester_added" value="1"/>
         Semester id:<br>
-        <input type="text" name="semester_id" placeholder="Semester id" required>
+        <input type="text" class="form-control" style="width:15%;" name="semester_id" placeholder="Semester id" required>
         <br>
         Semester name:<br>
-        <input type="text" name="semester_name" placeholder="Semester name" required>
+        <input type="text" class="form-control" style="width:15%;" name="semester_name" placeholder="Semester name" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -352,12 +352,12 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="semester_modified" value="1"/>
         Semester id:<br>
-        <input type="text" name="semester_id" placeholder="Semester id" required>
+        <input type="text" class="form-control" style="width:15%;" name="semester_id" placeholder="Semester id" required>
         <br>
         Semester name:<br>
-        <input type="text" name="semester_name" placeholder="Semester name" required>
+        <input type="text" class="form-control" style="width:15%;" name="semester_name" placeholder="Semester name" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -366,9 +366,9 @@ class DataView {
     //     <form method="post" action="">
     //     <input type="hidden" name="semester_deleted" value="1"/>
     //     Semester id:<br>
-    //     <input type="text" name="semester_id" placeholder="Semester id" required>
+    //     <input type="text" class="form-control" style="width:15%;" name="semester_id" placeholder="Semester id" required>
     //     <br>
-    //     <input type="submit" value="Submit">
+    //     <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
     //     </form>
     //   ';
     // }
@@ -435,21 +435,21 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="exam_added" value="1"/>
         Exam id:<br>
-        <input type="text" name="exam_id" placeholder="Exam id" required>
+        <input type="text" class="form-control" style="width:15%;" name="exam_id" placeholder="Exam id" required>
         <br>
         Room id:<br>
-        <input type="text" name="room_id" placeholder="Room id" required>
+        <input type="text" class="form-control" style="width:15%;" name="room_id" placeholder="Room id" required>
         <br>
         Hoc phan id:<br>
-        <input type="text" name="course_id" placeholder="Hoc phan id" required>
+        <input type="text" class="form-control" style="width:15%;" name="course_id" placeholder="Hoc phan id" required>
         <br>
         Ngay thi:<br>
-        <input type="text" name="ngaythi" placeholder="yyyy/mm/dd" required>
+        <input type="text" class="form-control" style="width:15%;" name="ngaythi" placeholder="yyyy-mm-dd" required>
         <br>
         Ca thi:<br>
-        <input type="text" name="cathi" placeholder="Ca thi" required>
+        <input type="text" class="form-control" style="width:15%;" name="cathi" placeholder="Ca thi" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -458,21 +458,21 @@ class DataView {
         <form method="post" action="">
         <input type="hidden" name="exam_modified" value="1"/>
         Exam id:<br>
-        <input type="text" name="exam_id" placeholder="Exam id" required>
+        <input type="text" class="form-control" style="width:15%;" name="exam_id" placeholder="Exam id" required>
         <br>
         Room id:<br>
-        <input type="text" name="room_id" placeholder="Room id" required>
+        <input type="text" class="form-control" style="width:15%;" name="room_id" placeholder="Room id" required>
         <br>
         Hoc phan id:<br>
-        <input type="text" name="course_id" placeholder="Hoc phan id" required>
+        <input type="text" class="form-control" style="width:15%;" name="course_id" placeholder="Hoc phan id" required>
         <br>
         Ngay thi:<br>
-        <input type="text" name="ngaythi" placeholder="yyyy/mm/dd" required>
+        <input type="text" class="form-control" style="width:15%;" name="ngaythi" placeholder="yyyy-mm-dd" required>
         <br>
         Ca thi:<br>
-        <input type="text" name="cathi" placeholder="Ca thi" required>
+        <input type="text" class="form-control" style="width:15%;" name="cathi" placeholder="Ca thi" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
         </form>
       ';
     }
@@ -481,9 +481,9 @@ class DataView {
     //     <form method="post" action="">
     //     <input type="hidden" name="exam_deleted" value="1"/>
     //     Exam id:<br>
-    //     <input type="text" name="exam_id" placeholder="Exam id" required>
+    //     <input type="text" class="form-control" style="width:15%;" name="exam_id" placeholder="Exam id" required>
     //     <br>
-    //     <input type="submit" value="Submit">
+    //     <input type="submit" class="btn btn-info" style="margin-top:12px;" value="Submit">
     //     </form>
     //   ';
     // }
@@ -564,16 +564,16 @@ class DataView {
     <div id="table-scroll">
     <table style="border:none; width: 100%; border-collapse:collapse;">
     <tr>
-    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Mã sinh viên</h5></th>
-    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Username</h5></th>
-    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center;"><h5>Họ và tên</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center; width: 33%;"><h5>Mã sinh viên</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center; width: 33%;"><h5>Username</h5></th>
+    <th style="border:1px solid #000; border-left:1px solid #000; text-align:center; width: 33%;"><h5>Họ và tên</h5></th>
     </tr>';
     foreach ($this->data as $row){
       $html .= '
       <tr>
-      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["sv_id"].'</td>
-      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["username"].'</td>
-      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center;">'.$row["fullname"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center; width: 33%;">'.$row["sv_id"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center; width: 33%;">'.$row["username"].'</td>
+      <td style="border:1px solid #000; border-left:1px solid #000; text-align:center; width: 33%;">'.$row["fullname"].'</td>
       </tr>
       ';
     }
